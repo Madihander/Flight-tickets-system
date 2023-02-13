@@ -15,17 +15,17 @@ public class Admin extends Customer {
 
     TableTickets Tickets = new TableTickets();*/
     Command insert;
-    Command read;
+    /*Command read;
     Command find;
-    Command delete;
+    Command delete;*/
 
     public Admin(String name, String email, String phoneNumber,
-                 Command insert, Command read, Command find, Command delete) {
+                 Command insert/*, Command read, Command find, Command delete*/) {
         super(name, email, phoneNumber);
         this.insert = insert;
-        this.read = read;
+        /*this.read = read;
         this.find = find;
-        this.delete = delete;
+        this.delete = delete;*/
     }
 
     @Override
@@ -36,6 +36,7 @@ public class Admin extends Customer {
     public void insertRecord(String tableName) {
         insert.execute(tableName);
     }
+    /*
     public void readData(String tableName) {
         read.execute(tableName);
     }
@@ -44,7 +45,7 @@ public class Admin extends Customer {
     }
     public void deleteRecord(String tableName) {
         delete.execute(tableName);
-    }
+    }*/
 
     /*
     public void addNewCustomer(Customer customer, Connection conn) {
