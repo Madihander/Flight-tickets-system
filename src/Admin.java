@@ -1,4 +1,7 @@
+import CommonClasses.Customer;
+import CommonClasses.Flight;
 import Tables.*;
+import CommonClasses.Airport;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -20,6 +23,7 @@ public class Admin extends Customer {
     public String getPassword() {
         return super.getPassword();
     }
+
 
     public void addNewCustomer(Customer customer, Connection conn) {
         Customers.insertIntoTable(conn, customer);
@@ -50,4 +54,5 @@ public class Admin extends Customer {
     public void deleteFlight(Connection conn) {
         Flights.deleteById(conn);
     }
+     */
 }

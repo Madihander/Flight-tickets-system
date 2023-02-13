@@ -1,3 +1,5 @@
+package CommonClasses;
+
 public class Ticket {
     private final int idCustomer;
     private final int place;

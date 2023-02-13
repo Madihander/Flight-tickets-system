@@ -1,3 +1,5 @@
+package CommonClasses;
+
 public class Airport {
     private final String title;
     private final String location;

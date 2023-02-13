@@ -1,3 +1,7 @@
+package CommonClasses;
+
+import CommonClasses.Customer;
+
 public class Passenger extends Customer {
     private double luggage;
     private double extraLuggage;

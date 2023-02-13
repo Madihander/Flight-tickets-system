@@ -1,3 +1,5 @@
+package CommonClasses;
+
 import java.util.ArrayList;
 
 public class ScheduledFlight {

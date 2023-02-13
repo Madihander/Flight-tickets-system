@@ -1,3 +1,5 @@
+package CommonClasses;
+
 public class Flight {
     private final int number;
     private final String localAirport;

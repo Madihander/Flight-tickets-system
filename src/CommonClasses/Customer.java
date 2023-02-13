@@ -1,3 +1,5 @@
+package CommonClasses;
+
 public class Customer {
     private final String name;
     private String password;
