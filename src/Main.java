@@ -5,17 +5,14 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
-    private static final String DB_USERNAME = "postgres";
-    private static final String DB_PASSWORD = "12345";
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/Flight_Tickets_System";
-    static dbConnection db = new dbConnection();
-    static Connection conn = db.connect_to_db(DB_URL, DB_USERNAME, DB_PASSWORD);
-    private static final Admin admin = new Admin("John", "john@gmail.com", "+7767176639");
+
+    //private static final Admin admin = new Admin("John", "john@gmail.com", "+7767176639");
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws SQLException {
+        Connection conn = dbConnection.getInstance().getConnection();
         // Пример
-        System.out.println(admin.getPassword());
+        /*System.out.println(admin.getPassword());
         TableAirport tableAirport = db.getTableAirport();
         tableAirport.readData(conn);
         //создаем нового пользователя для проверки авторизации
@@ -24,7 +21,7 @@ public class Main {
         System.out.println("Name: " + newCustomer.getName());
         System.out.println("Name: " + newCustomer.getEmail());
         System.out.println("Name: " + newCustomer.getPhoneNumber());
-        System.out.println("Password: " + newCustomer.getPassword());
+        System.out.println("Password: " + newCustomer.getPassword());*/
         /*
         int option = 0;
         System.out.println("=== FLIGHT TICKET SYSTEM ===");
