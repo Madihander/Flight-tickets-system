@@ -1,3 +1,5 @@
+package Tables;
+
 import java.sql.Connection;
 
 public abstract class Table {

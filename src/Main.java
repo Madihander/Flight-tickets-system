@@ -11,9 +11,10 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         Connection conn = dbConnection.getInstance().getConnection();
+
         // Пример
         /*System.out.println(admin.getPassword());
-        TableAirport tableAirport = db.getTableAirport();
+        Tables.TableAirport tableAirport = db.getTableAirport();
         tableAirport.readData(conn);
         //создаем нового пользователя для проверки авторизации
         Customer newCustomer = new Customer("Valer", "asda", "+771231231");
