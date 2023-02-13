@@ -14,9 +14,18 @@ public class Admin extends Customer {
     TablePassengers Passengers = new TablePassengers();
 
     TableTickets Tickets = new TableTickets();*/
+    Command insert;
+    Command read;
+    Command find;
+    Command delete;
 
-    public Admin(String name, String email, String phoneNumber) {
+    public Admin(String name, String email, String phoneNumber,
+                 Command insert, Command read, Command find, Command delete) {
         super(name, email, phoneNumber);
+        this.insert = insert;
+        this.read = read;
+        this.find = find;
+        this.delete = delete;
     }
 
     @Override
