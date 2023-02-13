@@ -7,20 +7,26 @@ import java.util.Scanner;
 
 public class Insert {
     static Scanner scanner = new Scanner(System.in);
-    public static void insertIntoAirports(Connection conn) {
+    public static String insertIntoAirports(Connection conn) {
+        String result = null;
         String tableName = "airports";
+
         System.out.println("Enter title of Airport");
         String title = scanner.next();
-        String location = airport.getLocation();
+
+        System.out.println("Enter location of Airport");
+        String location = scanner.next();
+
         Statement stmt;
         try {
             String query =
                     String.format("INSERT INTO %s(title,location) VALUES ('%s','%s');", tableName, title, location);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
-            System.out.println("Row Inserted");
+            result = ("Row Inserted");
         } catch (Exception e) {
             System.out.println(e);
         }
+        return result;
     }
 }

@@ -6,7 +6,7 @@ import java.sql.Statement;
 public class DataBase {
 
     public void insertIntoTable(Connection conn, String tableName) {
-
+        chooseTable("insert",tableName,conn); 
     }
 
     public void readData(Connection conn, String tableName) {
@@ -21,11 +21,12 @@ public class DataBase {
     }
 
     private String chooseTable(String operation, String tableName, Connection conn) {
+        String result = null;
         switch (operation) {
             case "insert":
                 switch (tableName) {
                     case "airports":
-                        Insert.insertIntoAirports(conn);
+                        result = Insert.insertIntoAirports(conn);
                         break;
                     case "customers":
                         break;
@@ -39,5 +40,6 @@ public class DataBase {
                 }
                 break;
         }
+        return result;
     }
 }
