@@ -5,9 +5,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class TablePassengers extends Table {
+public class TablePassengers {
     Scanner scanner = new Scanner(System.in);
-
+    /*
     public void insertIntoTable(Connection conn, Passenger passenger, int numberTicket) {
 
         String tableName = "passengers";
@@ -39,7 +39,7 @@ public class TablePassengers extends Table {
             res = stmt.executeQuery(query);
             while (res.next()) {
                 System.out.print(res.getString("id") + "| ");
-                System.out.print(res.getString("number Ticket") + "| ");
+                System.out.print(res.getString("number CommonClasses.Ticket") + "| ");
                 System.out.print(res.getString("luggage") + "| ");
                 System.out.println(res.getString("extraLuggage") + "| ");
             }
@@ -61,7 +61,7 @@ public class TablePassengers extends Table {
             res = stmt.executeQuery(query);
             while (res.next()) {
                 System.out.print(res.getString("id") + "| ");
-                System.out.print(res.getString("number Ticket") + "| ");
+                System.out.print(res.getString("number CommonClasses.Ticket") + "| ");
                 System.out.print(res.getString("luggage") + "| ");
                 System.out.println(res.getString("extraLuggage") + "| ");
             }
@@ -85,4 +85,6 @@ public class TablePassengers extends Table {
             System.out.println(e);
         }
     }
+*/
 }
+

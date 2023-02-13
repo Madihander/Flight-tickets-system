@@ -5,9 +5,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class TableAirport extends Table {
+public class TableAirport{
     Scanner scanner = new Scanner(System.in);
-
+    /*
     public void insertIntoTable(Connection conn, Airport airport) {
         String tableName = "airports";
         String title = airport.getTitle();
@@ -80,4 +80,6 @@ public class TableAirport extends Table {
             System.out.println(e);
         }
     }
+*/
+
 }

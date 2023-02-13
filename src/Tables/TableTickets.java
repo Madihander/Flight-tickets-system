@@ -5,9 +5,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class TableTickets extends Table {
+public class TableTickets{
     Scanner scanner = new Scanner(System.in);
-
+    /*
     public void insertIntoTable(Connection conn, Ticket ticket, int idCustomer) {
         String tableName = "tickets";
         int place = ticket.getPlace();
@@ -91,4 +91,6 @@ public class TableTickets extends Table {
             System.out.println(e);
         }
     }
+
+     */
 }

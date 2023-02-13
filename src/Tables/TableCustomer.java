@@ -1,5 +1,4 @@
 package Tables;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -7,7 +6,7 @@ import java.util.Scanner;
 
 public class TableCustomer  {
     Scanner scanner = new Scanner(System.in);
-
+    /*
     public void insertIntoTable(Connection conn, Customer customer) {
         String tableName = "customers";
         String name = customer.getName();
@@ -70,7 +69,7 @@ public class TableCustomer  {
                 System.out.print(res.getString("email")+ "| ");
                 System.out.print(res.getString("Phone number")+ "| ");
                 System.out.println(res.getString("balance")+ "| ");
-            }*/
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -91,4 +90,6 @@ public class TableCustomer  {
             System.out.println(e);
         }
     }
+*/
 }
+

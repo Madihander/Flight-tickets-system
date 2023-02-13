@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class TableAdmin {
     Scanner scanner = new Scanner(System.in);
+    /*
     public void insertIntoTable(Connection conn, Admin admin) {
         String tableName = "admins";
         String name = admin.getName();
@@ -47,4 +48,6 @@ public class TableAdmin {
             System.out.println(e);
         }
     }
+
+     */
 }

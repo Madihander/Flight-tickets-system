@@ -6,9 +6,9 @@ import java.sql.Statement;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class TableFlights extends Table {
+public class TableFlights {
     Scanner scanner = new Scanner(System.in);
-
+    /*
     public void insertIntoTable(Connection conn, Flight flight, String locationAirport) {
         String tableName = "flights";
 
@@ -105,4 +105,6 @@ public class TableFlights extends Table {
             System.out.println(e);
         }
     }
+
+     */
 }
