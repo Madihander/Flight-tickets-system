@@ -33,6 +33,19 @@ public class Admin extends Customer {
         return super.getPassword();
     }
 
+    public void insertRecord(String tableName) {
+        insert.execute(tableName);
+    }
+    public void readData(String tableName) {
+        read.execute(tableName);
+    }
+    public void findRecord(String tableName) {
+        find.execute(tableName);
+    }
+    public void deleteRecord(String tableName) {
+        delete.execute(tableName);
+    }
+
     /*
     public void addNewCustomer(Customer customer, Connection conn) {
         Customers.insertIntoTable(conn, customer);
