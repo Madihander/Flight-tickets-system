@@ -16,24 +16,24 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         // Пример
         System.out.println(admin.getPassword());
-         TableAirport tableAirport = db.getTableAirport();
+        TableAirport tableAirport = db.getTableAirport();
         tableAirport.readData(conn);
         //создаем нового пользователя для проверки авторизации
         Customer newCustomer = new Customer("Valer", "asda", "+771231231");
         admin.addNewCustomer(newCustomer, conn);
-        System.out.println("Name: "+ newCustomer.getName());
-        System.out.println("Name: "+ newCustomer.getEmail());
-        System.out.println("Name: "+ newCustomer.getPhoneNumber());
+        System.out.println("Name: " + newCustomer.getName());
+        System.out.println("Name: " + newCustomer.getEmail());
+        System.out.println("Name: " + newCustomer.getPhoneNumber());
         System.out.println("Password: " + newCustomer.getPassword());
-
+        /*
         int option = 0;
         System.out.println("=== FLIGHT TICKET SYSTEM ===");
         System.out.println("=== CHOOSE OPTION ===");
         System.out.println("=== 1. SIGN UP === \n" + "=== 2. SIGN IN ===\n" + "=== 3. EXIT ===");
         option = scanner.nextInt();
-        launch(option);
+        launch(option);*/
     }
-
+    /*
     public static void launch(int option) throws SQLException {
         switch (option) {
             case 1 -> signUp();
@@ -199,5 +199,5 @@ public class Main {
         admin.readFlight(conn);
         admin.deleteFlight(conn);
         adminInterfase();
-    }
+    }*/
 }
