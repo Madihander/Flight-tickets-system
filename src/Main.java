@@ -20,7 +20,7 @@ public class Main {
                 /*new ReadCommand(DB),
                 new FindCommand(DB),
                 new DeleteCommand(DB)*/);
-
+        admin.insertRecord("airports");
 
 
         // Пример

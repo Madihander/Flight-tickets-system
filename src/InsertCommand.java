@@ -14,6 +14,6 @@ public class InsertCommand implements Command{
     }
     @Override
     public void execute(String tableName) {
-        dataBase.insertIntoTable(conn,tableName);
+        System.out.println(dataBase.insertIntoTable(conn,tableName));
     }
 }

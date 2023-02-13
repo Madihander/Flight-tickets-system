@@ -4,9 +4,8 @@ import Tables.Operations.Insert;
 import java.sql.Connection;
 import java.sql.Statement;
 public class DataBase {
-
-    public void insertIntoTable(Connection conn, String tableName) {
-        chooseTable("insert",tableName,conn); 
+    public String insertIntoTable(Connection conn, String tableName) {
+        return chooseTable("insert",tableName,conn);
     }
 
     public void readData(Connection conn, String tableName) {
