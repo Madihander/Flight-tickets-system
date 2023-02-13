@@ -1,23 +1,34 @@
+import CommonClasses.dbConnection;
+import Tables.DataBase;
+
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.Scanner;
 
 public class Main {
 
-    //private static final Admin admin = new Admin("John", "john@gmail.com", "+7767176639");
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws SQLException {
+
         Connection conn = dbConnection.getInstance().getConnection();
+        Tables.DataBase DB = new DataBase();
+        Admin admin = new Admin(
+                "John", "john@gmail.com", "+7767176639",
+                new InsertCommand(DB)
+                /*new ReadCommand(DB),
+                new FindCommand(DB),
+                new DeleteCommand(DB)*/);
+
+
 
         // Пример
         /*System.out.println(admin.getPassword());
         Tables.TableAirport tableAirport = db.getTableAirport();
         tableAirport.readData(conn);
         //создаем нового пользователя для проверки авторизации
-        Customer newCustomer = new Customer("Valer", "asda", "+771231231");
+        CommonClasses.Customer newCustomer = new CommonClasses.Customer("Valer", "asda", "+771231231");
         admin.addNewCustomer(newCustomer, conn);
         System.out.println("Name: " + newCustomer.getName());
         System.out.println("Name: " + newCustomer.getEmail());
@@ -70,7 +81,7 @@ public class Main {
             }
         }
         // Создаем нового пользователя
-        Customer newCustomer = new Customer(name, email, phoneNumber);
+        CommonClasses.Customer newCustomer = new CommonClasses.Customer(name, email, phoneNumber);
         newCustomer.setBalance(balance);
         // Добавляем его в базу
         admin.addNewCustomer(newCustomer, conn);
@@ -83,7 +94,7 @@ public class Main {
     public static void signIn() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("=== SIGN IN ===");
-        Customer customer = null;
+        CommonClasses.Customer customer = null;
 
         System.out.println("=== Enter your name ===");
         String name = scanner.next();
@@ -101,7 +112,7 @@ public class Main {
                 System.out.println("You got a problem, try again");
                 System.exit(0);
             } else {
-                customer = new Customer(
+                customer = new CommonClasses.Customer(
                         result.getString("name"),
                         result.getString("email"),
                         result.getString("phonenumber"));
@@ -111,7 +122,7 @@ public class Main {
         }
     }
 
-    public static void customerInterfase(Customer customer) {
+    public static void customerInterfase(CommonClasses.Customer customer) {
     }
 
     public static void adminInterfase() {
@@ -141,12 +152,12 @@ public class Main {
         String location = scanner.next();
 
         //Создаем класс и добавляем его в массив
-        Airport newAirport = new Airport(title, location);
+        delete.Airport newAirport = new delete.Airport(title, location);
         admin.addNewAirport(newAirport, conn);
         adminInterfase();
     }
     public static void deleteAirport() {
-        System.out.println("=== Choose id of Airport ===");
+        System.out.println("=== Choose id of delete.Airport ===");
         admin.readAirports(conn);
         admin.deleteAirport(conn);
         adminInterfase();
@@ -186,14 +197,14 @@ public class Main {
             Places[i] = 0;
         }
         //Создаем класс и добавляем его в массив
-        Flight newFlight = new Flight(
+        CommonClasses.Flight newFlight = new CommonClasses.Flight(
                 number, location, departureDate, departure, arrival,
                 startTime, endTime, cost, Places);
         admin.addNewFlight(newFlight, conn,location);
         adminInterfase();
     }
     public static void deleteFlight() {
-        System.out.println("=== Choose id of Flight ===");
+        System.out.println("=== Choose id of CommonClasses.Flight ===");
         admin.readFlight(conn);
         admin.deleteFlight(conn);
         adminInterfase();
