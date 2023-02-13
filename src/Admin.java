@@ -1,19 +1,19 @@
 import CommonClasses.Customer;
 import CommonClasses.Flight;
-import Tables.*;
+//
 import CommonClasses.Airport;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 
 public class Admin extends Customer {
-    TableAirport Airports = new TableAirport();
+    /*TableAirport Airports = new TableAirport();
     TableFlights Flights = new TableFlights();
 
     TableCustomer Customers = new TableCustomer();
     TablePassengers Passengers = new TablePassengers();
 
-    TableTickets Tickets = new TableTickets();
+    TableTickets Tickets = new TableTickets();*/
 
     public Admin(String name, String email, String phoneNumber) {
         super(name, email, phoneNumber);
@@ -24,7 +24,7 @@ public class Admin extends Customer {
         return super.getPassword();
     }
 
-
+    /*
     public void addNewCustomer(Customer customer, Connection conn) {
         Customers.insertIntoTable(conn, customer);
     }
