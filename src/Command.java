@@ -1,3 +1,4 @@
+import CommonClasses.СommonClass;
 public interface Command {
-    public void execute(String tableName);
+    public void execute(СommonClass someClass,String tableName);
 }
