@@ -1,6 +1,6 @@
 package Tables.Operations;
 
- import CommonClasses.СommonClass;
+import CommonClasses.СommonClass;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -130,27 +130,39 @@ public class Insert {
         return String.valueOf(id);
     }
 
-    public static String insertIntoPassengers(Connection conn, СommonClass someClass) {
-        String result = null;
+    public static String insertIntoPassengers(Connection conn, СommonClass passenger) {
+        ResultSet result;
+        int id = 0;
         String tableName = "passengers";
 
+        int numberTicket = Integer.parseInt(passenger.printInfo().get(0));
 
-        System.out.println("Enter title of Airport");
-        String title = scanner.next();
+        double luggage = Double.parseDouble(passenger.printInfo().get(1));
 
-        System.out.println("Enter location of Airport");
-        String location = scanner.next();
+        double extraLuggage = Double.parseDouble(passenger.printInfo().get(2));
 
         Statement stmt;
         try {
             String query =
-                    String.format("INSERT INTO %s(title,location) VALUES ('%s','%s');", tableName, title, location);
+                    String.format("INSERT INTO %s(numberticket,luggage,extraLuggage) VALUES ('%s','%s','%s');", tableName, numberTicket, luggage, extraLuggage);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
-            result = ("Row Inserted");
         } catch (Exception e) {
-            System.out.println(e);
+            return String.valueOf(e);
         }
-        return result;
+        try {
+            String query = String.format("SELECT id FROM %s WHERE numberticket = '%s' AND luggage = '%s' ",
+                    tableName, numberTicket, luggage
+            );
+            stmt = conn.createStatement();
+            result = stmt.executeQuery(query);
+            while (result.next()) {
+                id = result.getInt("id");
+            }
+        } catch (Exception e) {
+            return String.valueOf(e);
+        }
+
+        return String.valueOf(id);
     }
 }

@@ -30,12 +30,15 @@ public class DataBase {
                     case "customers":
                         result = Insert.InsertIntoCustomers(conn,someClass);
                         break;
+                    case "tickets":
+                        result = Insert.InsertIntoTickets(conn,someClass);
+                        break;
                     case "passengers":
+                        result = Insert.insertIntoPassengers(conn,someClass);
                         break;
                     case "flights":
                         break;
-                    case "tickets":
-                        break;
+
 
                 }
                 break;

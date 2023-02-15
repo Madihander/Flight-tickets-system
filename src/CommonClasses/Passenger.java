@@ -3,6 +3,7 @@ package CommonClasses;
 import java.util.ArrayList;
 
 public class Passenger implements СommonClass {
+    private int id;
     private double luggage;
     private double extraLuggage;
     private final int numberTicket;
@@ -12,7 +13,12 @@ public class Passenger implements СommonClass {
         this.extraLuggage = extraLuggage;
         this.numberTicket =numberTicket;
     }
-
+    public void setId(int id){
+        this.id = id;
+    }
+    public int getId(){
+        return this.id;
+    }
     public void setLuggage(double num) {
         this.luggage = num;
     }
@@ -28,16 +34,16 @@ public class Passenger implements СommonClass {
         return extraLuggage;
     }
 
-    public int getNumberOrder() {
+    public int getNumberTicket() {
         return numberTicket;
     }
 
     @Override
     public ArrayList<String> printInfo() {
         ArrayList<String> data = new ArrayList<String>();
+        data.add(String.valueOf(this.numberTicket));
         data.add(String.valueOf(this.luggage));
         data.add(String.valueOf(this.extraLuggage));
-        data.add(String.valueOf(this.numberTicket));
         return data;
     }
 }
