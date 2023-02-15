@@ -1,23 +1,23 @@
 package Tables.Operations;
 
-import CommonClasses.Airport;
+ import CommonClasses.СommonClass;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 
 public class Insert {
     static Scanner scanner = new Scanner(System.in);
 
-    public static String insertIntoAirports(Connection conn) {
-        String result = null;
+    public static String insertIntoAirports(Connection conn, СommonClass airport) {
+        ResultSet result;
+        int id = 0;
         String tableName = "airports";
 
-        System.out.println("Enter title of Airport");
-        String title = scanner.next();
+        String title = airport.printInfo().get(0);
 
-        System.out.println("Enter location of Airport");
-        String location = scanner.next();
+        String location = airport.printInfo().get(1);
 
         Statement stmt;
         try {
@@ -25,12 +25,25 @@ public class Insert {
                     String.format("INSERT INTO %s(title,location) VALUES ('%s','%s');", tableName, title, location);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
-            result = ("Row Inserted");
         } catch (Exception e) {
             return String.valueOf(e);
         }
-        return result;
+
+        try {
+            String query = String.format("SELECT id FROM %s WHERE title = '%s' AND location = '%s' ",
+                    tableName, title, location
+            );
+            stmt = conn.createStatement();
+            result = stmt.executeQuery(query);
+            while (result.next()) {
+                id = result.getInt("id");
+            }
+        } catch (Exception e) {
+            return String.valueOf(e);
+        }
+        return String.valueOf(id);
     }
+
 
     public static String InsertIntoCustomers(Connection conn, СommonClass customer) {
         ResultSet result;
@@ -120,7 +133,6 @@ public class Insert {
     public static String insertIntoPassengers(Connection conn, СommonClass someClass) {
         String result = null;
         String tableName = "passengers";
-
 
 
         System.out.println("Enter title of Airport");
