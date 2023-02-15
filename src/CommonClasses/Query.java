@@ -2,21 +2,26 @@ package CommonClasses;
 
 import java.util.ArrayList;
 
-public class Query implements СommonClass{
+public class Query implements СommonClass {
     String query;
-    ArrayList<String> queryData = new ArrayList<String>();
-    public Query(String str,ArrayList<String> queryData){
+    String var1;
+    String var2;
+    String var3;
+
+    public Query(String str, String var1, String var2, String var3) {
         this.query = str;
-        this.queryData = queryData;
+        this.var1 = var1;
+        this.var2 = var2;
+        this.var3 = var3;
     }
 
     @Override
     public ArrayList<String> printInfo() {
         ArrayList<String> data = new ArrayList<String>();
         data.add(query);
-        data.add(queryData.get(0));
-        data.add(queryData.get(1));
-        data.add(queryData.get(2));
+        data.add(var1);
+        data.add(var2);
+        data.add(var3);
         return data;
     }
 }
