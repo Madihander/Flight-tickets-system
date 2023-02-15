@@ -27,12 +27,12 @@ public class Insert {
             stmt.executeUpdate(query);
             result = ("Row Inserted");
         } catch (Exception e) {
-            System.out.println(e);
+            return String.valueOf(e);
         }
         return result;
     }
 
-    public static String InsertIntoCustomers(Connection conn,СommonClass customer) {
+    public static String InsertIntoCustomers(Connection conn, СommonClass customer) {
         ResultSet result;
         int id = 0;
         String tableName = "customers";
@@ -56,7 +56,7 @@ public class Insert {
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
         } catch (Exception e) {
-            System.out.println(e);
+            return String.valueOf(e);
         }
 
         try {
@@ -65,11 +65,53 @@ public class Insert {
             );
             stmt = conn.createStatement();
             result = stmt.executeQuery(query);
-            while (result.next()){
+            while (result.next()) {
                 id = result.getInt("id");
             }
-        }catch (Exception e) {
-            System.out.println(e);
+        } catch (Exception e) {
+            return String.valueOf(e);
+        }
+
+        return String.valueOf(id);
+    }
+
+    public static String InsertIntoTickets(Connection conn, СommonClass ticket) {
+        ResultSet result;
+        int id = 0;
+        String tableName = "tickets";
+
+        String owner = ticket.printInfo().get(0);
+
+        int place = Integer.parseInt(ticket.printInfo().get(1));
+
+        int numberFlight = Integer.parseInt(ticket.printInfo().get(2));
+
+        int price = Integer.parseInt(ticket.printInfo().get(3));
+
+
+        Statement stmt;
+        try {
+            String query =
+                    String.format("INSERT INTO %s(owner,place,numberflight,price)" +
+                                    " VALUES ('%s','%s','%s','%s');",
+                            tableName, owner, place, numberFlight, price);
+            stmt = conn.createStatement();
+            stmt.executeUpdate(query);
+        } catch (Exception e) {
+            return String.valueOf(e);
+        }
+
+        try {
+            String query = String.format("SELECT id FROM %s WHERE owner = '%s' AND numberflight = '%s' ",
+                    tableName, owner, numberFlight
+            );
+            stmt = conn.createStatement();
+            result = stmt.executeQuery(query);
+            while (result.next()) {
+                id = result.getInt("id");
+            }
+        } catch (Exception e) {
+            return String.valueOf(e);
         }
 
         return String.valueOf(id);
