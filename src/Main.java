@@ -72,7 +72,7 @@ public class Main {
     public static void launch(int option, Admin admin) throws SQLException {
         switch (option) {
             case 1 -> signUp(admin);
-            //case 2 -> signIn(admin);
+            case 2 -> signIn(admin);
             case 3 -> System.exit(0);
         }
     }
@@ -137,9 +137,9 @@ public class Main {
         System.out.println("=== Enter your phone number ===");
         String phonenumber = scanner.next();
 
-        if (admin.getName().equals(name) && admin.getPassword().equals(password)) {
+        /*if (admin.getName().equals(name) && admin.getPassword().equals(password)) {
             adminInterfase();
-        }
+        }*/
         String str = "SELECT * FROM %s WHERE name = '%s' AND password = '%s' AND phonenumber = '%s' ";
 
         СommonClass query = new Query(str, name, password,phonenumber);
@@ -161,8 +161,9 @@ public class Main {
     }
 
     public static void customerInterfase(CommonClasses.Customer customer, Admin admin) {
+        System.out.println("YOU CUSTOMER");
     }
-
+/*
     public static void adminInterfase() {
         int option = 0;
         System.out.println("=== ADMIN PANEL ===");
