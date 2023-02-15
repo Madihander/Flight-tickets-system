@@ -2,6 +2,7 @@ import CommonClasses.Customer;
 import CommonClasses.СommonClass;
 //
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class Admin implements СommonClass {
@@ -38,7 +39,7 @@ public class Admin implements СommonClass {
         return password;
     }
 
-    public String insertRecord(СommonClass someClass,String tableName) {
+    public ResultSet insertRecord(СommonClass someClass, String tableName) {
         return insert.execute(someClass,tableName);
     }
 

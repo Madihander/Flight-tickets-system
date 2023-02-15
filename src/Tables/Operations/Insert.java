@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Insert {
     static Scanner scanner = new Scanner(System.in);
 
-    public static String insertIntoAirports(Connection conn, СommonClass airport) {
+    public static ResultSet insertIntoAirports(Connection conn, СommonClass airport) {
         ResultSet result;
         int id = 0;
         String tableName = "airports";
@@ -26,7 +26,7 @@ public class Insert {
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
         } catch (Exception e) {
-            return String.valueOf(e);
+            return (ResultSet) e;
         }
 
         try {
@@ -35,13 +35,10 @@ public class Insert {
             );
             stmt = conn.createStatement();
             result = stmt.executeQuery(query);
-            while (result.next()) {
-                id = result.getInt("id");
-            }
         } catch (Exception e) {
-            return String.valueOf(e);
+            return (ResultSet) e;
         }
-        return String.valueOf(id);
+        return result;
     }
 
     public static String InsertIntoCustomers(Connection conn, СommonClass customer) {

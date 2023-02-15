@@ -3,6 +3,7 @@ import CommonClasses.dbConnection;
 import CommonClasses.СommonClass;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class InsertCommand implements Command {
@@ -15,7 +16,7 @@ public class InsertCommand implements Command {
     }
 
     @Override
-    public String execute(СommonClass someClass, String tableName) {
+    public ResultSet execute(СommonClass someClass, String tableName) {
         return dataBase.insertIntoTable(conn, someClass, tableName);
     }
 }
