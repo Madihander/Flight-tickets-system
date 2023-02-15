@@ -1,5 +1,6 @@
 import CommonClasses.*;
 import CommonClasses.dbConnection;
+import CommonClasses.СommonClass;
 import Tables.DataBase;
 
 import java.sql.Connection;
@@ -15,16 +16,13 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws SQLException {
-
-        Connection conn = dbConnection.getInstance().getConnection();
+        Connection conn;
         DataBase DB = new DataBase();
         ResultSet result;
-        Admin admin = new Admin(
-                "John",
-                new InsertCommand(DB),
-                new ReadCommand(DB),
-                /*new FindCommand(DB),*/
-                new DeleteCommand(DB));
+        Admin admin = new Admin("John", new InsertCommand(DB), new ReadCommand(DB), new FindCommand(DB), new DeleteCommand(DB));
+
+        System.out.println("=== admin password: " + admin.getPassword() + " === \n");
+
 
         //Airport airport = new Airport("Asan", "Asan");
         //int id = 0;
@@ -33,13 +31,15 @@ public class Main {
         //    id = result.getInt("id");
         //}
         //System.out.println(id);
-        admin.delete.execute(null,"airports");
+
+        /*admin.delete.execute(null,"airports");
         result = admin.read.execute(null,"airports");
         while (result.next()) {
             System.out.print(result.getString("id") + "| ");
             System.out.print(result.getString("title") + "| ");
             System.out.println(result.getString("location") + "| ");
-        }
+        }*/
+
         //Flight flight = new Flight(airport.getIdAirport(), "2023-02-10", "Karaganda",
         //        "01:20:00", "03:40:00", 1000, 50);
         //String FlightID = admin.insertRecord(flight, "flights");
@@ -61,35 +61,23 @@ public class Main {
         //System.out.println(idPAs);
 
 
-        // Пример
-        /*System.out.println(admin.getPassword());
-        Tables.TableAirport tableAirport = db.getTableAirport();
-        tableAirport.readData(conn);
-        //создаем нового пользователя для проверки авторизации
-        CommonClasses.Customer newCustomer = new CommonClasses.Customer("Valer", "asda", "+771231231");
-        admin.addNewCustomer(newCustomer, conn);
-        System.out.println("Name: " + newCustomer.getName());
-        System.out.println("Name: " + newCustomer.getEmail());
-        System.out.println("Name: " + newCustomer.getPhoneNumber());
-        System.out.println("Password: " + newCustomer.getPassword());*/
-        /*
         int option = 0;
         System.out.println("=== FLIGHT TICKET SYSTEM ===");
         System.out.println("=== CHOOSE OPTION ===");
         System.out.println("=== 1. SIGN UP === \n" + "=== 2. SIGN IN ===\n" + "=== 3. EXIT ===");
         option = scanner.nextInt();
-        launch(option);*/
+        launch(option, admin);
     }
-    /*
-    public static void launch(int option) throws SQLException {
+
+    public static void launch(int option, Admin admin) throws SQLException {
         switch (option) {
-            case 1 -> signUp();
-            case 2 -> signIn();
+            case 1 -> signUp(admin);
+            //case 2 -> signIn(admin);
             case 3 -> System.exit(0);
         }
     }
 
-    public static void signUp() {
+    public static void signUp(Admin admin) throws SQLException {
 
         System.out.println("\n=== SIGN UP ===");
 
@@ -122,14 +110,20 @@ public class Main {
         CommonClasses.Customer newCustomer = new CommonClasses.Customer(name, email, phoneNumber);
         newCustomer.setBalance(balance);
         // Добавляем его в базу
-        admin.addNewCustomer(newCustomer, conn);
+        ResultSet result = admin.insertRecord(newCustomer, "customers");
+        int id = 0;
+        while (result.next()) {
+            id = result.getInt("id");
+        }
+        newCustomer.setId(id);
 
         System.out.println("=== Your password: " + newCustomer.getPassword() + " ===");
+        System.out.println(newCustomer.getId());
         System.out.println("=== NEW CUSTOMER CREATED ===");
         //userInterfase(newCustomer);
     }
 
-    public static void signIn() throws SQLException {
+    public static void signIn(Admin admin) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("=== SIGN IN ===");
         CommonClasses.Customer customer = null;
@@ -140,11 +134,16 @@ public class Main {
         System.out.println("=== Enter your password ===");
         String password = scanner.next();
 
+        System.out.println("=== Enter your phone number ===");
+        String phonenumber = scanner.next();
+
         if (admin.getName().equals(name) && admin.getPassword().equals(password)) {
             adminInterfase();
         }
+        String str = "SELECT * FROM %s WHERE name = '%s' AND password = '%s' AND phonenumber = '%s' ";
 
-        ResultSet result = admin.findCustomer("asda", "13818382", conn);
+        СommonClass query = new Query(str, name, password,phonenumber);
+        ResultSet result = admin.findData(query,"customers");
         while (result.next()) {
             if (result.getString("name") == null) {
                 System.out.println("You got a problem, try again");
@@ -155,12 +154,13 @@ public class Main {
                         result.getString("email"),
                         result.getString("phonenumber"));
                 customer.setPassword(result.getString("password"));
-                customerInterfase(customer);
+                customer.setId(result.getInt("id"));
+                customerInterfase(customer,admin);
             }
         }
     }
 
-    public static void customerInterfase(CommonClasses.Customer customer) {
+    public static void customerInterfase(CommonClasses.Customer customer, Admin admin) {
     }
 
     public static void adminInterfase() {
@@ -180,6 +180,7 @@ public class Main {
             case 5 -> System.exit(0);
         }
     }
+
     public static void addAirport() {
         System.out.println("=== ADD AIRPORT ===");
         //Запрашиваем данные для создания нового класса
@@ -194,6 +195,7 @@ public class Main {
         admin.addNewAirport(newAirport, conn);
         adminInterfase();
     }
+
     public static void deleteAirport() {
         System.out.println("=== Choose id of delete.Airport ===");
         admin.readAirports(conn);
@@ -201,6 +203,7 @@ public class Main {
         adminInterfase();
 
     }
+
     public static void addFlight() {
         System.out.println("=== ADD FLIGHT ===");
         //Запрашиваем данные для создания нового класса
@@ -231,16 +234,17 @@ public class Main {
         System.out.println("ENTER number of places");
         int numberPlaces = scanner.nextInt();
         int[] Places = new int[numberPlaces];
-        for(int i = 0; i< numberPlaces; i++) {
+        for (int i = 0; i < numberPlaces; i++) {
             Places[i] = 0;
         }
         //Создаем класс и добавляем его в массив
         CommonClasses.Flight newFlight = new CommonClasses.Flight(
                 number, location, departureDate, departure, arrival,
                 startTime, endTime, cost, Places);
-        admin.addNewFlight(newFlight, conn,location);
+        admin.addNewFlight(newFlight, conn, location);
         adminInterfase();
     }
+
     public static void deleteFlight() {
         System.out.println("=== Choose id of CommonClasses.Flight ===");
         admin.readFlight(conn);
