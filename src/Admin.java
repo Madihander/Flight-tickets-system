@@ -1,12 +1,10 @@
 import CommonClasses.Customer;
-import CommonClasses.Flight;
+import CommonClasses.СommonClass;
 //
-import CommonClasses.Airport;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
+import java.util.ArrayList;
 
-public class Admin extends Customer {
+public class Admin implements СommonClass {
     /*TableAirport Airports = new TableAirport();
     TableFlights Flights = new TableFlights();
 
@@ -14,28 +12,41 @@ public class Admin extends Customer {
     TablePassengers Passengers = new TablePassengers();
 
     TableTickets Tickets = new TableTickets();*/
+
+    private final String name;
+    private final String password;
     Command insert;
     /*Command read;
     Command find;
     Command delete;*/
 
-    public Admin(String name, String email, String phoneNumber,
-                 Command insert/*, Command read, Command find, Command delete*/) {
-        super(name, email, phoneNumber);
+    public Admin(String name, Command insert/*, Command read, Command find, Command delete*/) {
+        this.name = name;
+        this.password = "12345";
         this.insert = insert;
         /*this.read = read;
         this.find = find;
         this.delete = delete;*/
     }
 
-    @Override
-    public String getPassword() {
-        return super.getPassword();
+
+    public String getName() {
+        return password;
     }
 
-    public void insertRecord(String tableName) {
-        insert.execute(tableName);
+    public String getPassword() {
+        return password;
     }
+
+    public void insertRecord(СommonClass someClass,String tableName) {
+        insert.execute(someClass,tableName);
+    }
+
+    @Override
+    public ArrayList<String> printInfo() {
+        return null;
+    }
+
     /*
     public void readData(String tableName) {
         read.execute(tableName);

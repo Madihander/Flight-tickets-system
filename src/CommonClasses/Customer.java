@@ -1,7 +1,10 @@
 package CommonClasses;
 
-public class Customer {
+import java.util.ArrayList;
+
+public class Customer implements СommonClass {
     private final String name;
+    private int id;
     private String password;
 
     private final String email;
@@ -14,6 +17,14 @@ public class Customer {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = generatePassword();
+    }
+
+    public void setId(int num) {
+        this.id = num;
+    }
+
+    public int getId() {
+        return this.id;
     }
 
     public void setBalance(double num) {
@@ -53,5 +64,18 @@ public class Customer {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public ArrayList<String> printInfo() {
+        ArrayList<String> data = new ArrayList<String>();
+        data.add(this.name);
+        data.add(this.email);
+        data.add(this.password);
+        data.add(this.phoneNumber);
+        data.add(String.valueOf(this.balance));
+
+        return data;
+
     }
 }

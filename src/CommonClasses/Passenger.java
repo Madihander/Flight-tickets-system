@@ -1,14 +1,15 @@
 package CommonClasses;
 
-import CommonClasses.Customer;
+import java.util.ArrayList;
 
-public class Passenger extends Customer {
+public class Passenger implements СommonClass {
+    private final int id;
     private double luggage;
     private double extraLuggage;
     private final int numberOrder;
 
-    public Passenger(String email, String name, String phoneNumber, double luggage, double extraLuggage,int numberOrder) {
-        super(email, name, phoneNumber);
+    public Passenger(int id, double luggage, double extraLuggage, int numberOrder) {
+        this.id = id;
         this.luggage = luggage;
         this.extraLuggage = extraLuggage;
         this.numberOrder =numberOrder;
@@ -31,5 +32,14 @@ public class Passenger extends Customer {
 
     public int getNumberOrder() {
         return numberOrder;
+    }
+
+    @Override
+    public ArrayList<String> printInfo() {
+        ArrayList<String> data = new ArrayList<String>();
+        data.add(String.valueOf(this.luggage));
+        data.add(String.valueOf(this.extraLuggage));
+        data.add(String.valueOf(this.numberOrder));
+        return data;
     }
 }
