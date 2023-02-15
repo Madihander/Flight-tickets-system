@@ -1,12 +1,12 @@
 package Tables;
 
+import Tables.Operations.Delete;
 import Tables.Operations.Insert;
 import CommonClasses.СommonClass;
 import Tables.Operations.Read;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class DataBase {
     public ResultSet insertIntoTable(Connection conn, СommonClass someClass, String tableName) {
@@ -21,7 +21,8 @@ public class DataBase {
 
     }
 
-    public void deleteById(Connection conn, String tableName) {
+    public ResultSet deleteById(Connection conn, СommonClass someClass, String tableName) {
+        return null;
     }
 
     private ResultSet chooseTable(String operation, СommonClass someClass, String tableName, Connection conn) {
@@ -40,9 +41,14 @@ public class DataBase {
             case "read":
                 switch (tableName) {
                     case "airports", "customers", "tickets", "passengers", "flights" ->
-                            result = Read.readDataAirports(conn, tableName);
+                            result = Read.readData(conn, tableName);
                 }
                 break;
+            case "delete":
+                switch (tableName){
+                    case "airports", "customers", "tickets", "passengers", "flights" ->
+                            result = Delete.deleteById(conn, tableName);
+                }
         }
         return result;
     }

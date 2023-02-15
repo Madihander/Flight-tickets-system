@@ -1,5 +1,6 @@
 import CommonClasses.Customer;
 import CommonClasses.СommonClass;
+import org.checkerframework.checker.units.qual.C;
 //
 
 import java.sql.ResultSet;
@@ -18,16 +19,16 @@ public class Admin implements СommonClass {
     private final String password;
     Command insert;
     Command read;
-    /*Command find;
-    Command delete;*/
+    /*Command find;*/
+    Command delete;
 
-    public Admin(String name, Command insert, Command read/*, Command find, Command delete*/) {
+    public Admin(String name, Command insert, Command read, /*Command find,*/ Command delete) {
         this.name = name;
         this.password = "12345";
         this.insert = insert;
         this.read = read;
-        /*this.find = find;
-        this.delete = delete;*/
+        /*this.find = find;*/
+        this.delete = delete;
     }
 
 
@@ -41,6 +42,9 @@ public class Admin implements СommonClass {
 
     public ResultSet insertRecord(СommonClass someClass, String tableName) {
         return insert.execute(someClass,tableName);
+    }
+    public ResultSet readData(СommonClass someClass, String tableName) {
+        return read.execute(someClass,tableName);
     }
 
     @Override
