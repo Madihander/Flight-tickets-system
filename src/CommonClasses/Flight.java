@@ -1,6 +1,8 @@
 package CommonClasses;
 
-public class Flight {
+import java.util.ArrayList;
+
+public class Flight implements СommonClass {
     private final int number;
     private final String localAirport;
     private final String departureDate;
@@ -13,10 +15,10 @@ public class Flight {
 
     private final int cost;
 
-    private int[] Places;
+    private int Places;
 
 
-    public Flight(int number, String localAirport, String departureDate, String departure, String arrival, String startTime, String endTime, int cost, int[]Places) {
+    public Flight(int number, String localAirport, String departureDate, String departure, String arrival, String startTime, String endTime, int cost, int Places) {
         this.number = number;
         this.localAirport = localAirport;
         this.departureDate = departureDate;
@@ -57,10 +59,24 @@ public class Flight {
     }
 
 
-    public int[] getPlaces() {
+    public int getPlaces() {
         return Places;
     }
-    public void setPlaces(int[] places) {
+    public void setPlaces(int places) {
         this.Places = places;
+    }
+    @Override
+    public ArrayList<String> printInfo() {
+        ArrayList<String> data = new ArrayList<String>();
+        data.add(String.valueOf(this.number));
+        data.add(this.localAirport);
+        data.add(this.departureDate);
+        data.add(this.departure);
+        data.add(this.arrival);
+        data.add(this.startTime);
+        data.add(this.endTime);
+        data.add(String.valueOf(this.cost));
+        data.add(String.valueOf(this.Places));
+        return data;
     }
 }
