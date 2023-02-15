@@ -25,7 +25,8 @@ public class Insert {
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
         } catch (Exception e) {
-            return (ResultSet) e;
+            System.out.println(e);
+            return null;
         }
 
         try {
@@ -35,7 +36,8 @@ public class Insert {
             stmt = conn.createStatement();
             result = stmt.executeQuery(query);
         } catch (Exception e) {
-            return (ResultSet) e;
+            System.out.println(e);
+            return null;
         }
         return result;
     }
@@ -63,7 +65,8 @@ public class Insert {
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
         } catch (Exception e) {
-            return (ResultSet) e;
+            System.out.println(e);
+            return null;
         }
 
         try {
@@ -73,7 +76,8 @@ public class Insert {
             stmt = conn.createStatement();
             result = stmt.executeQuery(query);
         } catch (Exception e) {
-            return (ResultSet) e;
+            System.out.println(e);
+            return null;
         }
 
         return result;
@@ -101,7 +105,8 @@ public class Insert {
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
         } catch (Exception e) {
-            return (ResultSet) e;
+            System.out.println(e);
+            return null;
         }
 
         try {
@@ -111,7 +116,8 @@ public class Insert {
             stmt = conn.createStatement();
             result = stmt.executeQuery(query);
         } catch (Exception e) {
-            return (ResultSet) e;
+            System.out.println(e);
+            return null;
         }
 
         return result;
@@ -134,7 +140,8 @@ public class Insert {
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
         } catch (Exception e) {
-            return (ResultSet) e;
+            System.out.println(e);
+            return null;
         }
         try {
             String query = String.format("SELECT id FROM %s WHERE numberticket = '%s' AND luggage = '%s' ",
@@ -143,7 +150,8 @@ public class Insert {
             stmt = conn.createStatement();
             result = stmt.executeQuery(query);
         } catch (Exception e) {
-            return (ResultSet) e;
+            System.out.println(e);
+            return null;
         }
 
         return result;
@@ -166,20 +174,22 @@ public class Insert {
             String query =
                     String.format("INSERT INTO %s(locationAirport,departureDate,arrival,startTime,endTime,cost,places)" +
                                     " VALUES ('%s','%s','%s','%s','%s','%s','%s');",
-                            tableName,locationAirport, departureDate, arrival, startTime, endTime, cost,places);
+                            tableName, locationAirport, departureDate, arrival, startTime, endTime, cost, places);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
         } catch (Exception e) {
-            return (ResultSet) e;
+            System.out.println(e);
+            return null;
         }
         try {
             String query = String.format("SELECT id FROM %s WHERE locationAirport = '%s' AND arrival = '%s' AND startTime = '%s' AND endTime = '%s' ",
-                    tableName, locationAirport, arrival,startTime,endTime
+                    tableName, locationAirport, arrival, startTime, endTime
             );
             stmt = conn.createStatement();
             result = stmt.executeQuery(query);
         } catch (Exception e) {
-            return (ResultSet) e;
+            System.out.println(e);
+            return null;
         }
 
         return result;
