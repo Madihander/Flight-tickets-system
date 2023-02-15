@@ -3,16 +3,14 @@ package CommonClasses;
 import java.util.ArrayList;
 
 public class Passenger implements СommonClass {
-    private final int id;
     private double luggage;
     private double extraLuggage;
-    private final int numberOrder;
+    private final int numberTicket;
 
-    public Passenger(int id, double luggage, double extraLuggage, int numberOrder) {
-        this.id = id;
+    public Passenger(double luggage, double extraLuggage, int numberTicket) {
         this.luggage = luggage;
         this.extraLuggage = extraLuggage;
-        this.numberOrder =numberOrder;
+        this.numberTicket =numberTicket;
     }
 
     public void setLuggage(double num) {
@@ -31,7 +29,7 @@ public class Passenger implements СommonClass {
     }
 
     public int getNumberOrder() {
-        return numberOrder;
+        return numberTicket;
     }
 
     @Override
@@ -39,7 +37,7 @@ public class Passenger implements СommonClass {
         ArrayList<String> data = new ArrayList<String>();
         data.add(String.valueOf(this.luggage));
         data.add(String.valueOf(this.extraLuggage));
-        data.add(String.valueOf(this.numberOrder));
+        data.add(String.valueOf(this.numberTicket));
         return data;
     }
 }
