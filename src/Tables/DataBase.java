@@ -28,6 +28,7 @@ public class DataBase {
                         result = Insert.insertIntoAirports(conn,someClass);
                         break;
                     case "customers":
+                        result = Insert.InsertIntoCustomers(conn,someClass);
                         break;
                     case "passengers":
                         break;

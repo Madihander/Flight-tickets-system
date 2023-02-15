@@ -32,24 +32,20 @@ public class Insert {
         return result;
     }
 
-    public static String InsertIntoCustomers(Connection conn) {
-        String result = null;
+    public static String InsertIntoCustomers(Connection conn,СommonClass customer) {
+        ResultSet result;
+        int id = 0;
         String tableName = "customers";
 
-        System.out.println("Enter name: ");
-        String name = scanner.next();
+        String name = customer.printInfo().get(0);
 
-        System.out.println("Enter password: ");
-        String password = scanner.next();
+        String email = customer.printInfo().get(1);
 
-        System.out.println("Enter email: ");
-        String email = scanner.next();
+        String password = customer.printInfo().get(2);
 
-        System.out.println("Enter phone number: ");
-        String phoneNumber = scanner.next();
+        String phoneNumber = customer.printInfo().get(3);
 
-        System.out.println("Enter balance: ");
-        double balance = scanner.nextDouble();
+        double balance = Double.parseDouble(customer.printInfo().get(4));
 
         Statement stmt;
         try {
@@ -59,14 +55,27 @@ public class Insert {
                             tableName, name, password, email, phoneNumber, balance);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
-            result = ("Row Inserted");
         } catch (Exception e) {
             System.out.println(e);
         }
-        return result;
+
+        try {
+            String query = String.format("SELECT id FROM %s WHERE name = '%s' AND password = '%s' ",
+                    tableName, name, password
+            );
+            stmt = conn.createStatement();
+            result = stmt.executeQuery(query);
+            while (result.next()){
+                id = result.getInt("id");
+            }
+        }catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return String.valueOf(id);
     }
 
-    public static String insertIntoPassengers(Connection conn) {
+    public static String insertIntoPassengers(Connection conn, СommonClass someClass) {
         String result = null;
         String tableName = "passengers";
 

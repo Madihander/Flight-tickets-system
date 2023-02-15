@@ -38,8 +38,8 @@ public class Admin implements СommonClass {
         return password;
     }
 
-    public void insertRecord(СommonClass someClass,String tableName) {
-        insert.execute(someClass,tableName);
+    public String insertRecord(СommonClass someClass,String tableName) {
+        return insert.execute(someClass,tableName);
     }
 
     @Override
