@@ -18,7 +18,7 @@ public class Delete {
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
         } catch (Exception e) {
-            return (ResultSet) e;
+            System.out.println(e);
         }
         return result;
     }

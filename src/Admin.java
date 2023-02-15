@@ -46,6 +46,9 @@ public class Admin implements СommonClass {
     public ResultSet readData(СommonClass someClass, String tableName) {
         return read.execute(someClass,tableName);
     }
+    public ResultSet deleteById(СommonClass someClass, String tableName) {
+        return delete.execute(someClass,tableName);
+    }
 
     @Override
     public ArrayList<String> printInfo() {

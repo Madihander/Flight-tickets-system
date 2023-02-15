@@ -1,9 +1,13 @@
+import CommonClasses.*;
 import CommonClasses.dbConnection;
 import Tables.DataBase;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -13,14 +17,48 @@ public class Main {
     public static void main(String[] args) throws SQLException {
 
         Connection conn = dbConnection.getInstance().getConnection();
-        Tables.DataBase DB = new DataBase();
+        DataBase DB = new DataBase();
+        ResultSet result;
         Admin admin = new Admin(
-                "John", "john@gmail.com", "+7767176639",
-                new InsertCommand(DB)
-                /*new ReadCommand(DB),
-                new FindCommand(DB),
-                new DeleteCommand(DB)*/);
-        admin.insertRecord("airports");
+                "John",
+                new InsertCommand(DB),
+                new ReadCommand(DB),
+                /*new FindCommand(DB),*/
+                new DeleteCommand(DB));
+
+        //Airport airport = new Airport("Asan", "Asan");
+        //int id = 0;
+        //result = admin.insertRecord(airport, "airports");
+        //while (result.next()) {
+        //    id = result.getInt("id");
+        //}
+        //System.out.println(id);
+        admin.delete.execute(null,"airports");
+        result = admin.read.execute(null,"airports");
+        while (result.next()) {
+            System.out.print(result.getString("id") + "| ");
+            System.out.print(result.getString("title") + "| ");
+            System.out.println(result.getString("location") + "| ");
+        }
+        //Flight flight = new Flight(airport.getIdAirport(), "2023-02-10", "Karaganda",
+        //        "01:20:00", "03:40:00", 1000, 50);
+        //String FlightID = admin.insertRecord(flight, "flights");
+        //flight.setId(Integer.parseInt(FlightID));
+        //System.out.println(FlightID);
+
+
+        //Customer customer = new Customer("Alik","ALik@mail.ru","+ALik");
+
+        //String id = admin.insertRecord(customer,"customers");
+        //customer.setId(Integer.parseInt(id));
+
+        //Ticket ticket = new Ticket(customer.getId(),601,1,1000);
+        //String idTIC = admin.insertRecord(ticket,"tickets");
+        //ticket.setIdTicket(Integer.parseInt(idTIC));
+
+        //Passenger passenger =new Passenger(0.5,0.5,ticket.getIdTicket());
+        //String idPAs = admin.insertRecord(passenger,"passengers");
+        //System.out.println(idPAs);
 
 
         // Пример

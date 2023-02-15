@@ -22,7 +22,7 @@ public class DataBase {
     }
 
     public ResultSet deleteById(Connection conn, СommonClass someClass, String tableName) {
-        return null;
+        return chooseTable("delete", someClass, tableName, conn);
     }
 
     private ResultSet chooseTable(String operation, СommonClass someClass, String tableName, Connection conn) {
