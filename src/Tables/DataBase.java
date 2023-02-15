@@ -46,13 +46,16 @@ public class DataBase {
                             result = Read.readData(conn, tableName);
                 }
                 break;
+
             case "find":
                 switch (tableName) {
                     case "airports", "customers", "tickets", "passengers", "flights" ->
-                            result = Find.findData(conn,someClass, tableName);
+                            result = Find.findData(conn, someClass, tableName);
                 }
+                break;
+
             case "delete":
-                switch (tableName){
+                switch (tableName) {
                     case "airports", "customers", "tickets", "passengers", "flights" ->
                             result = Delete.deleteById(conn, tableName);
                 }
