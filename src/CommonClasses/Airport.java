@@ -3,6 +3,7 @@ package CommonClasses;
 import java.util.ArrayList;
 
 public class Airport implements СommonClass {
+    private int idAirport;
     private final String title;
     private final String location;
 
@@ -11,6 +12,14 @@ public class Airport implements СommonClass {
     public Airport(String title, String location) {
         this.title = title;
         this.location = location;
+    }
+
+    public void setIdAirport(int id) {
+        this.idAirport = id;
+    }
+
+    public int getIdAirport() {
+        return idAirport;
     }
 
     public String getTitle() {
