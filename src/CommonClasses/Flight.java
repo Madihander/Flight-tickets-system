@@ -3,11 +3,10 @@ package CommonClasses;
 import java.util.ArrayList;
 
 public class Flight implements СommonClass {
-    private final int number;
-    private final String localAirport;
+    private int id;
+    private final int localAirport;
     private final String departureDate;
 
-    private final String departure;
     private final String arrival;
 
     private final String startTime;
@@ -18,11 +17,9 @@ public class Flight implements СommonClass {
     private int Places;
 
 
-    public Flight(int number, String localAirport, String departureDate, String departure, String arrival, String startTime, String endTime, int cost, int Places) {
-        this.number = number;
+    public Flight(int localAirport, String departureDate, String arrival, String startTime, String endTime, int cost, int Places) {
         this.localAirport = localAirport;
         this.departureDate = departureDate;
-        this.departure = departure;
         this.arrival = arrival;
 
         this.startTime = startTime;
@@ -31,17 +28,17 @@ public class Flight implements СommonClass {
         this.cost = cost;
         this.Places = Places;
     }
-    public int getNumber() {
-        return number;
+    public int getId() {
+        return id;
     }
-    public String getLocalAirport() {
+    public void setId(int id) {
+        this.id = id;
+    }
+    public int getLocalAirport() {
         return localAirport;
     }
     public String getDepartureDate() {
         return departureDate;
-    }
-    public String getDeparture() {
-        return departure;
     }
     public String getArrival() {
         return arrival;
@@ -68,10 +65,8 @@ public class Flight implements СommonClass {
     @Override
     public ArrayList<String> printInfo() {
         ArrayList<String> data = new ArrayList<String>();
-        data.add(String.valueOf(this.number));
-        data.add(this.localAirport);
+        data.add(String.valueOf(this.localAirport));
         data.add(this.departureDate);
-        data.add(this.departure);
         data.add(this.arrival);
         data.add(this.startTime);
         data.add(this.endTime);

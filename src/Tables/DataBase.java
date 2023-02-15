@@ -37,6 +37,7 @@ public class DataBase {
                         result = Insert.insertIntoPassengers(conn,someClass);
                         break;
                     case "flights":
+                        result = Insert.insertIntoFligths(conn,someClass);
                         break;
 
 

@@ -44,7 +44,6 @@ public class Insert {
         return String.valueOf(id);
     }
 
-
     public static String InsertIntoCustomers(Connection conn, СommonClass customer) {
         ResultSet result;
         int id = 0;
@@ -165,4 +164,45 @@ public class Insert {
 
         return String.valueOf(id);
     }
+
+    public static String insertIntoFligths(Connection conn, СommonClass flight) {
+        ResultSet result;
+        int id = 0;
+        String tableName = "flights";
+
+        String locationAirport = flight.printInfo().get(0);
+        String departureDate = flight.printInfo().get(1);
+        String arrival = flight.printInfo().get(2);
+        String startTime = flight.printInfo().get(3);
+        String endTime = flight.printInfo().get(4);
+        int cost = Integer.parseInt(flight.printInfo().get(5));
+        int places = Integer.parseInt(flight.printInfo().get(6));
+
+        Statement stmt;
+        try {
+            String query =
+                    String.format("INSERT INTO %s(locationAirport,departureDate,arrival,startTime,endTime,cost,places)" +
+                                    " VALUES ('%s','%s','%s','%s','%s','%s','%s');",
+                            tableName,locationAirport, departureDate, arrival, startTime, endTime, cost,places);
+            stmt = conn.createStatement();
+            stmt.executeUpdate(query);
+        } catch (Exception e) {
+            return String.valueOf(e);
+        }
+        try {
+            String query = String.format("SELECT id FROM %s WHERE locationAirport = '%s' AND arrival = '%s' AND startTime = '%s' AND endTime = '%s' ",
+                    tableName, locationAirport, arrival,startTime,endTime
+            );
+            stmt = conn.createStatement();
+            result = stmt.executeQuery(query);
+            while (result.next()) {
+                id = result.getInt("id");
+            }
+        } catch (Exception e) {
+            return String.valueOf(e);
+        }
+
+        return String.valueOf(id);
+    }
+
 }
