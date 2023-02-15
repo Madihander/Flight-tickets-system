@@ -25,21 +25,11 @@ public class DataBase {
         switch (operation) {
             case "insert":
                 switch (tableName) {
-                    case "airports":
-                        result = Insert.insertIntoAirports(conn,someClass);
-                        break;
-                    /*case "customers":
-                        result = Insert.InsertIntoCustomers(conn, someClass);
-                        break;
-                    case "tickets":
-                        result = Insert.InsertIntoTickets(conn, someClass);
-                        break;
-                    case "passengers":
-                        result = Insert.insertIntoPassengers(conn, someClass);
-                        break;
-                    case "flights":
-                        result = Insert.insertIntoFligths(conn, someClass);
-                        break;*/
+                    case "airports" -> result = Insert.insertIntoAirports(conn, someClass);
+                    case "customers" -> result = Insert.InsertIntoCustomers(conn, someClass);
+                    case "tickets" -> result = Insert.InsertIntoTickets(conn, someClass);
+                    case "passengers" -> result = Insert.insertIntoPassengers(conn, someClass);
+                    case "flights" -> result = Insert.insertIntoFligths(conn, someClass);
                 }
                 break;
         }

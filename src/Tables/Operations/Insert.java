@@ -12,7 +12,6 @@ public class Insert {
 
     public static ResultSet insertIntoAirports(Connection conn, СommonClass airport) {
         ResultSet result;
-        int id = 0;
         String tableName = "airports";
 
         String title = airport.printInfo().get(0);
@@ -41,9 +40,8 @@ public class Insert {
         return result;
     }
 
-    public static String InsertIntoCustomers(Connection conn, СommonClass customer) {
+    public static ResultSet InsertIntoCustomers(Connection conn, СommonClass customer) {
         ResultSet result;
-        int id = 0;
         String tableName = "customers";
 
         String name = customer.printInfo().get(0);
@@ -65,7 +63,7 @@ public class Insert {
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
         } catch (Exception e) {
-            return String.valueOf(e);
+            return (ResultSet) e;
         }
 
         try {
@@ -74,19 +72,15 @@ public class Insert {
             );
             stmt = conn.createStatement();
             result = stmt.executeQuery(query);
-            while (result.next()) {
-                id = result.getInt("id");
-            }
         } catch (Exception e) {
-            return String.valueOf(e);
+            return (ResultSet) e;
         }
 
-        return String.valueOf(id);
+        return result;
     }
 
-    public static String InsertIntoTickets(Connection conn, СommonClass ticket) {
+    public static ResultSet InsertIntoTickets(Connection conn, СommonClass ticket) {
         ResultSet result;
-        int id = 0;
         String tableName = "tickets";
 
         String owner = ticket.printInfo().get(0);
@@ -107,7 +101,7 @@ public class Insert {
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
         } catch (Exception e) {
-            return String.valueOf(e);
+            return (ResultSet) e;
         }
 
         try {
@@ -116,19 +110,15 @@ public class Insert {
             );
             stmt = conn.createStatement();
             result = stmt.executeQuery(query);
-            while (result.next()) {
-                id = result.getInt("id");
-            }
         } catch (Exception e) {
-            return String.valueOf(e);
+            return (ResultSet) e;
         }
 
-        return String.valueOf(id);
+        return result;
     }
 
-    public static String insertIntoPassengers(Connection conn, СommonClass passenger) {
+    public static ResultSet insertIntoPassengers(Connection conn, СommonClass passenger) {
         ResultSet result;
-        int id = 0;
         String tableName = "passengers";
 
         int numberTicket = Integer.parseInt(passenger.printInfo().get(0));
@@ -144,7 +134,7 @@ public class Insert {
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
         } catch (Exception e) {
-            return String.valueOf(e);
+            return (ResultSet) e;
         }
         try {
             String query = String.format("SELECT id FROM %s WHERE numberticket = '%s' AND luggage = '%s' ",
@@ -152,19 +142,15 @@ public class Insert {
             );
             stmt = conn.createStatement();
             result = stmt.executeQuery(query);
-            while (result.next()) {
-                id = result.getInt("id");
-            }
         } catch (Exception e) {
-            return String.valueOf(e);
+            return (ResultSet) e;
         }
 
-        return String.valueOf(id);
+        return result;
     }
 
-    public static String insertIntoFligths(Connection conn, СommonClass flight) {
+    public static ResultSet insertIntoFligths(Connection conn, СommonClass flight) {
         ResultSet result;
-        int id = 0;
         String tableName = "flights";
 
         String locationAirport = flight.printInfo().get(0);
@@ -184,7 +170,7 @@ public class Insert {
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
         } catch (Exception e) {
-            return String.valueOf(e);
+            return (ResultSet) e;
         }
         try {
             String query = String.format("SELECT id FROM %s WHERE locationAirport = '%s' AND arrival = '%s' AND startTime = '%s' AND endTime = '%s' ",
@@ -192,14 +178,11 @@ public class Insert {
             );
             stmt = conn.createStatement();
             result = stmt.executeQuery(query);
-            while (result.next()) {
-                id = result.getInt("id");
-            }
         } catch (Exception e) {
-            return String.valueOf(e);
+            return (ResultSet) e;
         }
 
-        return String.valueOf(id);
+        return result;
     }
 
 }
