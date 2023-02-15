@@ -19,15 +19,15 @@ public class Admin implements СommonClass {
     private final String password;
     Command insert;
     Command read;
-    /*Command find;*/
+    Command find;
     Command delete;
 
-    public Admin(String name, Command insert, Command read, /*Command find,*/ Command delete) {
+    public Admin(String name, Command insert, Command read, Command find, Command delete) {
         this.name = name;
         this.password = "12345";
         this.insert = insert;
         this.read = read;
-        /*this.find = find;*/
+        this.find = find;
         this.delete = delete;
     }
 
@@ -46,6 +46,10 @@ public class Admin implements СommonClass {
     public ResultSet readData(СommonClass someClass, String tableName) {
         return read.execute(someClass,tableName);
     }
+    public ResultSet findData(СommonClass someClass, String tableName) {
+        return find.execute(someClass,tableName);
+    }
+
     public ResultSet deleteById(СommonClass someClass, String tableName) {
         return delete.execute(someClass,tableName);
     }

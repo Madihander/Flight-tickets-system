@@ -1,6 +1,7 @@
 package Tables;
 
 import Tables.Operations.Delete;
+import Tables.Operations.Find;
 import Tables.Operations.Insert;
 import CommonClasses.СommonClass;
 import Tables.Operations.Read;
@@ -17,8 +18,9 @@ public class DataBase {
         return chooseTable("read", someClass, tableName, conn);
     }
 
-    public void searchById(Connection conn, String tableName) {
+    public ResultSet findData(Connection conn, СommonClass someClass, String tableName) {
 
+        return chooseTable("find", someClass, tableName, conn);
     }
 
     public ResultSet deleteById(Connection conn, СommonClass someClass, String tableName) {
@@ -44,11 +46,18 @@ public class DataBase {
                             result = Read.readData(conn, tableName);
                 }
                 break;
+            case "find":
+                switch (tableName) {
+                    case "airports", "customers", "tickets", "passengers", "flights" ->
+                            result = Find.findData(conn,someClass, tableName);
+                }
             case "delete":
                 switch (tableName){
                     case "airports", "customers", "tickets", "passengers", "flights" ->
                             result = Delete.deleteById(conn, tableName);
                 }
+                break;
+
         }
         return result;
     }
