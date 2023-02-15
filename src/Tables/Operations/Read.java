@@ -7,9 +7,8 @@ import java.util.Scanner;
 
 public class Read {
     static Scanner scanner = new Scanner(System.in);
-    public static ResultSet readDataAirports(Connection conn) {
+    public static ResultSet readDataAirports(Connection conn,String tableName) {
         ResultSet result = null;
-        String tableName = "airports";
 
         Statement stmt;
         try {

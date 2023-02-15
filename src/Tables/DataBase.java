@@ -1,4 +1,5 @@
 package Tables;
+
 import Tables.Operations.Insert;
 import CommonClasses.СommonClass;
 import Tables.Operations.Read;
@@ -6,13 +7,14 @@ import Tables.Operations.Read;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 public class DataBase {
     public ResultSet insertIntoTable(Connection conn, СommonClass someClass, String tableName) {
-        return chooseTable("insert",someClass,tableName,conn);
+        return chooseTable("insert", someClass, tableName, conn);
     }
 
     public ResultSet readData(Connection conn, СommonClass someClass, String tableName) {
-        return chooseTable("read",someClass,tableName,conn);
+        return chooseTable("read", someClass, tableName, conn);
     }
 
     public void searchById(Connection conn, String tableName) {
@@ -34,10 +36,13 @@ public class DataBase {
                     case "flights" -> result = Insert.insertIntoFligths(conn, someClass);
                 }
                 break;
+
             case "read":
                 switch (tableName) {
-                    case "airports" -> result = Read.readDataAirports(conn);
+                    case "airports", "customers", "tickets", "passengers", "flights" ->
+                            result = Read.readDataAirports(conn, tableName);
                 }
+                break;
         }
         return result;
     }
