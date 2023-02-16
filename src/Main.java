@@ -200,11 +200,19 @@ public class Main {
         adminInterfase(admin);
     }
 
-    public static void deleteAirport() {
-        System.out.println("=== Choose id of delete.Airport ===");
-        admin.readAirports(conn);
-        admin.deleteAirport(conn);
-        adminInterfase();
+    public static void deleteAirport(Admin admin) throws SQLException {
+        System.out.println("=== DELETE AIRPORT ===");
+        System.out.println("=== CHOOSE ID ===");
+        ResultSet result = null;
+        result = admin.read.execute(null, "airports");
+        while (result.next()) {
+            System.out.print(result.getString("id") + "| ");
+            System.out.print(result.getString("title") + "| ");
+            System.out.println(result.getString("location") + "| ");
+        }
+        admin.delete.execute(null,"airports");
+
+        adminInterfase(admin);
 
     }
 
