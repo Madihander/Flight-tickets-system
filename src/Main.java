@@ -163,8 +163,8 @@ public class Main {
     public static void customerInterfase(CommonClasses.Customer customer, Admin admin) {
         System.out.println("YOU CUSTOMER");
     }
-/*
-    public static void adminInterfase() {
+
+    public static void adminInterfase(Admin admin) throws SQLException {
         int option = 0;
         System.out.println("=== ADMIN PANEL ===");
         System.out.println("=== 1. ADD AIRPORT ===");
@@ -174,10 +174,10 @@ public class Main {
         System.out.println("=== 5. EXIT ===");
         option = scanner.nextInt();
         switch (option) {
-            case 1 -> addAirport();
-            case 2 -> deleteAirport();
-            case 3 -> addFlight();
-            case 4 -> deleteFlight();
+            case 1 -> addAirport(admin);
+            case 2 -> deleteAirport(admin);
+            case 3 -> addFlight(admin);
+            case 4 -> deleteFlight(admin);
             case 5 -> System.exit(0);
         }
     }
