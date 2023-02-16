@@ -137,9 +137,9 @@ public class Main {
         System.out.println("=== Enter your phone number ===");
         String phonenumber = scanner.next();
 
-        /*if (admin.getName().equals(name) && admin.getPassword().equals(password)) {
-            adminInterfase();
-        }*/
+        if (admin.getName().equals(name) && admin.getPassword().equals(password)) {
+            adminInterfase(admin);
+        }
         String str = "SELECT * FROM %s WHERE name = '%s' AND password = '%s' AND phonenumber = '%s' ";
 
         СommonClass query = new Query(str, name, password,phonenumber);
