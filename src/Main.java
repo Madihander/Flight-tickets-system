@@ -182,7 +182,7 @@ public class Main {
         }
     }
 
-    public static void addAirport() {
+    public static void addAirport(Admin admin) throws SQLException {
         System.out.println("=== ADD AIRPORT ===");
         //Запрашиваем данные для создания нового класса
         System.out.println("=== ENTER TITLE ===");
@@ -192,9 +192,12 @@ public class Main {
         String location = scanner.next();
 
         //Создаем класс и добавляем его в массив
-        delete.Airport newAirport = new delete.Airport(title, location);
-        admin.addNewAirport(newAirport, conn);
-        adminInterfase();
+        Airport newAirport = new Airport(title,location);
+        ResultSet result = admin.insertRecord(newAirport,"airports");
+        int id = ReachIdFromResultSet(result);
+        newAirport.setIdAirport(id);
+
+        adminInterfase(admin);
     }
 
     public static void deleteAirport() {
