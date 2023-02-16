@@ -140,7 +140,7 @@ public class Main {
         }
         String str = "SELECT * FROM %s WHERE name = '%s' AND password = '%s' AND phonenumber = '%s' ";
 
-        СommonClass query = new QueryFind(str, name, password,phonenumber);
+        СommonClass query = new QueryFind(str, name, password, phonenumber);
         ResultSet result = admin.find.execute(query, "customers");
         while (result.next()) {
             if (result.getString("name") == null) {
@@ -153,13 +153,58 @@ public class Main {
                         result.getString("phonenumber"));
                 customer.setPassword(result.getString("password"));
                 customer.setId(result.getInt("id"));
-                customerInterfase(customer,admin);
+                customerInterfase(customer, admin);
             }
         }
     }
 
-    public static void customerInterfase(CommonClasses.Customer customer, Admin admin) {
-        System.out.println("YOU CUSTOMER");
+    public static void customerInterfase(CommonClasses.Customer customer, Admin admin) throws SQLException {
+        int option = 0;
+        System.out.println("=== CUSTOMER PANEL ===");
+        System.out.println("=== 1. BUY TICKETS ===");
+        System.out.println("=== 2. EXIT ===");
+        option = scanner.nextInt();
+        switch (option) {
+            case 1 -> addTicket(customer, admin);
+            case 2 -> System.exit(0);
+        }
+    }
+
+    public static void addTicket(CommonClasses.Customer customer, Admin admin) throws SQLException {
+
+        System.out.println("=== BUY TICKET ===");
+        System.out.println("=== CHOOSE FLIGHT ===");
+        ResultSet result = null;
+        result = admin.read.execute(null, "flights");
+        while (result.next()) {
+            System.out.print(result.getString("id") + "| ");
+            System.out.print(result.getString("arrival") + "| ");
+            System.out.println(result.getString("starttime") + "| ");
+            System.out.println(result.getString("endtime") + "| ");
+            System.out.println(result.getString("places") + "| ");
+        }
+        System.out.println("=== ENTER number flight ===");
+        int numberFlight = scanner.nextInt();
+        System.out.println("=== ENTER PLACE ===");
+        int place = scanner.nextInt();
+        System.out.println("=== ENTER PRICE ===");
+        int price = scanner.nextInt();
+
+        Ticket newTicket = new Ticket(customer.getId(), place, numberFlight, price);
+        result = admin.insert.execute(newTicket, "tickets");
+        int ticketId = 0;
+        while (result.next()) {
+            ticketId = result.getInt("id");
+        }
+        newTicket.setIdTicket(ticketId);
+        System.out.println("\n=== ENTER LUGGAGE ===");
+        double luggage = scanner.nextDouble();
+        System.out.println("=== ENTER EXTRA LUGGAGE ===");
+        double extraLuggage = scanner.nextDouble();
+
+        Passenger newPassenger = new Passenger(luggage,extraLuggage,ticketId);
+        admin.insert.execute(newPassenger,"passengers");
+        adminInterfase(admin);
     }
 
     public static void adminInterfase(Admin admin) throws SQLException {
@@ -190,8 +235,8 @@ public class Main {
         String location = scanner.next();
 
         //Создаем класс и добавляем его в массив
-        Airport newAirport = new Airport(title,location);
-        ResultSet result = admin.insert.execute(newAirport,"airports");
+        Airport newAirport = new Airport(title, location);
+        ResultSet result = admin.insert.execute(newAirport, "airports");
         int id = ReachIdFromResultSet(result);
         newAirport.setIdAirport(id);
 
@@ -208,7 +253,7 @@ public class Main {
             System.out.print(result.getString("title") + "| ");
             System.out.println(result.getString("location") + "| ");
         }
-        admin.delete.execute(null,"airports");
+        admin.delete.execute(null, "airports");
 
         adminInterfase(admin);
 
@@ -248,7 +293,7 @@ public class Main {
         //Создаем класс и добавляем его в массив
         CommonClasses.Flight newFlight = new CommonClasses.Flight(
                 locationAirport, departureDate, arrival, startTime, endTime, cost, Places);
-        admin.insert.execute(newFlight,"flights");
+        admin.insert.execute(newFlight, "flights");
 
         adminInterfase(admin);
     }
@@ -264,13 +309,13 @@ public class Main {
             System.out.println(result.getString("starttime") + "| ");
             System.out.println(result.getString("endtime") + "| ");
         }
-        admin.delete.execute(null,"flights");
+        admin.delete.execute(null, "flights");
 
         adminInterfase(admin);
     }
 
     public static int ReachIdFromResultSet(ResultSet result) throws SQLException {
-        int id =0;
+        int id = 0;
         while (result.next()) {
             id = result.getInt("id");
         }
