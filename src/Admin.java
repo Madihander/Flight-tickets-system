@@ -33,25 +33,11 @@ public class Admin implements СommonClass {
 
 
     public String getName() {
-        return password;
+        return name;
     }
 
     public String getPassword() {
         return password;
-    }
-
-    public ResultSet insertRecord(СommonClass someClass, String tableName) {
-        return insert.execute(someClass,tableName);
-    }
-    public ResultSet readData(СommonClass someClass, String tableName) {
-        return read.execute(someClass,tableName);
-    }
-    public ResultSet findData(СommonClass someClass, String tableName) {
-        return find.execute(someClass,tableName);
-    }
-
-    public ResultSet deleteById(СommonClass someClass, String tableName) {
-        return delete.execute(someClass,tableName);
     }
 
     @Override
