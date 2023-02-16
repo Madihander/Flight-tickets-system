@@ -7,14 +7,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class Admin implements СommonClass {
-    /*TableAirport Airports = new TableAirport();
-    TableFlights Flights = new TableFlights();
-
-    TableCustomer Customers = new TableCustomer();
-    TablePassengers Passengers = new TablePassengers();
-
-    TableTickets Tickets = new TableTickets();*/
-
     private final String name;
     private final String password;
     Command insert;
