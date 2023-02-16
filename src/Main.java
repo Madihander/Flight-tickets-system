@@ -216,7 +216,7 @@ public class Main {
 
     public static void addFlight(Admin admin) throws SQLException {
         System.out.println("=== CHOSE ID AIRPORT ===");
-        ResultSet result = admin.read.execute(null, "airports");
+        ResultSet result = admin.read.execute(null, "flights");
         while (result.next()) {
             System.out.print(result.getString("id") + "| ");
             System.out.print(result.getString("title") + "| ");
@@ -253,11 +253,20 @@ public class Main {
         adminInterfase(admin);
     }
 
-    public static void deleteFlight(Admin admin) {
-        System.out.println("=== Choose id of CommonClasses.Flight ===");
-        admin.readFlight(conn);
-        admin.deleteFlight(conn);
-        adminInterfase();
+    public static void deleteFlight(Admin admin) throws SQLException {
+        System.out.println("=== DELETE FLIGHT ===");
+        System.out.println("=== CHOOSE ID ===");
+        ResultSet result = null;
+        result = admin.read.execute(null, "flights");
+        while (result.next()) {
+            System.out.print(result.getString("id") + "| ");
+            System.out.print(result.getString("arrival") + "| ");
+            System.out.println(result.getString("starttime") + "| ");
+            System.out.println(result.getString("endtime") + "| ");
+        }
+        admin.delete.execute(null,"flights");
+
+        adminInterfase(admin);
     }
 
     public static int ReachIdFromResultSet(ResultSet result) throws SQLException {
