@@ -251,5 +251,14 @@ public class Main {
         admin.readFlight(conn);
         admin.deleteFlight(conn);
         adminInterfase();
-    }*/
+    }
+
+    public static int ReachIdFromResultSet(ResultSet result) throws SQLException {
+        int id =0;
+        while (result.next()) {
+            id = result.getInt("id");
+        }
+        return id;
+    }
+
 }
