@@ -110,7 +110,7 @@ public class Main {
         CommonClasses.Customer newCustomer = new CommonClasses.Customer(name, email, phoneNumber);
         newCustomer.setBalance(balance);
         // Добавляем его в базу
-        ResultSet result = admin.insertRecord(newCustomer, "customers");
+        ResultSet result = admin.insert.execute(newCustomer, "customers");
         int id = 0;
         while (result.next()) {
             id = result.getInt("id");
@@ -142,8 +142,8 @@ public class Main {
         }
         String str = "SELECT * FROM %s WHERE name = '%s' AND password = '%s' AND phonenumber = '%s' ";
 
-        СommonClass query = new Query(str, name, password,phonenumber);
-        ResultSet result = admin.findData(query,"customers");
+        СommonClass query = new QueryFind(str, name, password,phonenumber);
+        ResultSet result = admin.find.execute(query, "customers");
         while (result.next()) {
             if (result.getString("name") == null) {
                 System.out.println("You got a problem, try again");
@@ -193,7 +193,7 @@ public class Main {
 
         //Создаем класс и добавляем его в массив
         Airport newAirport = new Airport(title,location);
-        ResultSet result = admin.insertRecord(newAirport,"airports");
+        ResultSet result = admin.insert.execute(newAirport,"airports");
         int id = ReachIdFromResultSet(result);
         newAirport.setIdAirport(id);
 
