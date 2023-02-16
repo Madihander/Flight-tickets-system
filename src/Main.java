@@ -1,14 +1,12 @@
 import CommonClasses.*;
-import CommonClasses.dbConnection;
 import CommonClasses.СommonClass;
 import Tables.DataBase;
+import org.checkerframework.checker.units.qual.A;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -216,20 +214,22 @@ public class Main {
 
     }
 
-    public static void addFlight() {
+    public static void addFlight(Admin admin) throws SQLException {
+        System.out.println("=== CHOSE ID AIRPORT ===");
+        ResultSet result = admin.read.execute(null, "airports");
+        while (result.next()) {
+            System.out.print(result.getString("id") + "| ");
+            System.out.print(result.getString("title") + "| ");
+            System.out.println(result.getString("location") + "| ");
+        }
+        System.out.println("=== ENTER ID ===");
+        int locationAirport = scanner.nextInt();
+
         System.out.println("=== ADD FLIGHT ===");
         //Запрашиваем данные для создания нового класса
-        System.out.println("=== ENTER NUMBER ===");
-        int number = scanner.nextInt();
-
-        System.out.println("=== ENTER LOCATION ===");
-        String location = scanner.next();
 
         System.out.println("=== ENTER departureDate ===");
         String departureDate = scanner.next();
-
-        System.out.println("=== ENTER departure ===");
-        String departure = scanner.next();
 
         System.out.println("=== ENTER arrival ===");
         String arrival = scanner.next();
@@ -244,20 +244,16 @@ public class Main {
         int cost = scanner.nextInt();
 
         System.out.println("ENTER number of places");
-        int numberPlaces = scanner.nextInt();
-        int[] Places = new int[numberPlaces];
-        for (int i = 0; i < numberPlaces; i++) {
-            Places[i] = 0;
-        }
+        int Places = scanner.nextInt();
         //Создаем класс и добавляем его в массив
         CommonClasses.Flight newFlight = new CommonClasses.Flight(
-                number, location, departureDate, departure, arrival,
-                startTime, endTime, cost, Places);
-        admin.addNewFlight(newFlight, conn, location);
-        adminInterfase();
+                locationAirport, departureDate, arrival, startTime, endTime, cost, Places);
+        admin.insert.execute(newFlight,"flights");
+
+        adminInterfase(admin);
     }
 
-    public static void deleteFlight() {
+    public static void deleteFlight(Admin admin) {
         System.out.println("=== Choose id of CommonClasses.Flight ===");
         admin.readFlight(conn);
         admin.deleteFlight(conn);
