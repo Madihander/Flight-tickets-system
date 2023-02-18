@@ -3,32 +3,28 @@ package CommonClasses;
 import java.util.ArrayList;
 
 public class Customer implements СommonClass {
-    private final String name;
     private int id;
+    private final String name;
     private String password;
 
     private final String email;
     private final String phoneNumber;
-
     private double balance;
 
-    public Customer(String name, String email, String phoneNumber) {
+    private double luggage;
+
+    private int ticket;
+
+    public Customer(String name, String email, String phoneNumber, double balance, double luggage) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = generatePassword();
-    }
-
-    public void setId(int num) {
-        this.id = num;
+        this.balance = balance;
     }
 
     public int getId() {
         return this.id;
-    }
-
-    public void setBalance(double num) {
-        this.balance = num;
     }
 
     public String getEmail() {
@@ -51,6 +47,14 @@ public class Customer implements СommonClass {
         return balance;
     }
 
+    public double getLuggage() {
+        return luggage;
+    }
+
+    public int getTicket() {
+        return ticket;
+    }
+
     public String generatePassword() {
         int length = 8;
         String set = "1234567890";
@@ -66,6 +70,18 @@ public class Customer implements СommonClass {
         this.password = password;
     }
 
+    public void setId(int num) {
+        this.id = num;
+    }
+
+    public void setBalance(double num) {
+        this.balance = num;
+    }
+
+    public void setTicket(int ticket) {
+        this.ticket = ticket;
+    }
+
     @Override
     public ArrayList<String> printInfo() {
         ArrayList<String> data = new ArrayList<String>();
@@ -74,7 +90,7 @@ public class Customer implements СommonClass {
         data.add(this.password);
         data.add(this.phoneNumber);
         data.add(String.valueOf(this.balance));
-
+        data.add(String.valueOf(this.luggage));
         return data;
 
     }
