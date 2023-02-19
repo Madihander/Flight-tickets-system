@@ -187,12 +187,58 @@ public class Main {
         System.out.println("=== 5. EXIT ===");
         option = scanner.nextInt();
         switch (option) {
-            case 1 -> addAirport(admin);
-            case 2 -> deleteAirport(admin);
-            case 3 -> addFlight(admin);
-            case 4 -> deleteFlight(admin);
-            case 5 -> System.exit(0);
+            case 1 -> addFlight(admin);
+            case 2 -> deleteFlight(admin);
+            case 3 -> System.exit(0);
         }
+    }
+
+    public static void addFlight(Admin admin) throws SQLException {
+
+        System.out.println("=== ADD FLIGHT ===");
+        //Запрашиваем данные для создания нового класса
+
+        System.out.println("=== ENTER departureDate ===");
+        String departureDate = scanner.next();
+
+        System.out.println("=== ENTER departure ===");
+        String departure = scanner.next();
+
+        System.out.println("=== ENTER arrival ===");
+        String arrival = scanner.next();
+
+        System.out.println("=== ENTER startTime ===");
+        String startTime = scanner.next();
+
+        System.out.println("=== ENTER endTime ===");
+        String endTime = scanner.next();
+
+        System.out.println("=== ENTER cost ===");
+        int cost = scanner.nextInt();
+
+        //Создаем класс и добавляем его в массив
+        CommonClasses.Flight newFlight = new CommonClasses.Flight(
+                departureDate, departure , arrival, startTime, endTime, cost);
+        admin.insert.execute(newFlight, "flights");
+
+        adminInterfase(admin);
+    }
+
+    public static void deleteFlight(Admin admin) throws SQLException {
+        System.out.println("=== DELETE FLIGHT ===");
+        System.out.println("=== CHOOSE ID ===");
+        ResultSet result = null;
+        result = admin.read.execute(null, "flights");
+        while (result.next()) {
+            System.out.print(result.getString("id") + "| ");
+            System.out.println(result.getString("departure" + "| "));
+            System.out.print(result.getString("arrival") + "| ");
+            System.out.println(result.getString("starttime") + "| ");
+            System.out.println(result.getString("endtime") + "| ");
+        }
+        admin.delete.execute(null, "flights");
+
+        adminInterfase(admin);
     }
 
 
@@ -233,61 +279,6 @@ public class Main {
         adminInterfase(admin);
     }
 
-
-    public static void addFlight(Admin admin) throws SQLException {
-        System.out.println("=== CHOSE ID AIRPORT ===");
-        ResultSet result = admin.read.execute(null, "flights");
-        while (result.next()) {
-            System.out.print(result.getString("id") + "| ");
-            System.out.print(result.getString("title") + "| ");
-            System.out.println(result.getString("location") + "| ");
-        }
-        System.out.println("=== ENTER ID ===");
-        int locationAirport = scanner.nextInt();
-
-        System.out.println("=== ADD FLIGHT ===");
-        //Запрашиваем данные для создания нового класса
-
-        System.out.println("=== ENTER departureDate ===");
-        String departureDate = scanner.next();
-
-        System.out.println("=== ENTER arrival ===");
-        String arrival = scanner.next();
-
-        System.out.println("=== ENTER startTime ===");
-        String startTime = scanner.next();
-
-        System.out.println("=== ENTER endTime ===");
-        String endTime = scanner.next();
-
-        System.out.println("=== ENTER cost ===");
-        int cost = scanner.nextInt();
-
-        System.out.println("ENTER number of places");
-        int Places = scanner.nextInt();
-        //Создаем класс и добавляем его в массив
-        CommonClasses.Flight newFlight = new CommonClasses.Flight(
-                locationAirport, departureDate, arrival, startTime, endTime, cost, Places);
-        admin.insert.execute(newFlight, "flights");
-
-        adminInterfase(admin);
-    }
-
-    public static void deleteFlight(Admin admin) throws SQLException {
-        System.out.println("=== DELETE FLIGHT ===");
-        System.out.println("=== CHOOSE ID ===");
-        ResultSet result = null;
-        result = admin.read.execute(null, "flights");
-        while (result.next()) {
-            System.out.print(result.getString("id") + "| ");
-            System.out.print(result.getString("arrival") + "| ");
-            System.out.println(result.getString("starttime") + "| ");
-            System.out.println(result.getString("endtime") + "| ");
-        }
-        admin.delete.execute(null, "flights");
-
-        adminInterfase(admin);
-    }
 
     public static int ReachIdFromResultSet(ResultSet result) throws SQLException {
         int id = 0;
