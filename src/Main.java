@@ -177,6 +177,25 @@ public class Main {
         }
     }
 
+    public static void adminInterfase(Admin admin) throws SQLException {
+        int option = 0;
+        System.out.println("=== ADMIN PANEL ===");
+        System.out.println("=== 1. ADD AIRPORT ===");
+        System.out.println("=== 2. DELETE AIRPORT ===");
+        System.out.println("=== 3. ADD FLIGHT ===");
+        System.out.println("=== 4. DELETE FLIGHT ===");
+        System.out.println("=== 5. EXIT ===");
+        option = scanner.nextInt();
+        switch (option) {
+            case 1 -> addAirport(admin);
+            case 2 -> deleteAirport(admin);
+            case 3 -> addFlight(admin);
+            case 4 -> deleteFlight(admin);
+            case 5 -> System.exit(0);
+        }
+    }
+
+
     public static void addTicket(CommonClasses.Customer customer, Admin admin) throws SQLException {
 
         System.out.println("=== BUY TICKET ===");
@@ -214,57 +233,6 @@ public class Main {
         adminInterfase(admin);
     }
 
-    public static void adminInterfase(Admin admin) throws SQLException {
-        int option = 0;
-        System.out.println("=== ADMIN PANEL ===");
-        System.out.println("=== 1. ADD AIRPORT ===");
-        System.out.println("=== 2. DELETE AIRPORT ===");
-        System.out.println("=== 3. ADD FLIGHT ===");
-        System.out.println("=== 4. DELETE FLIGHT ===");
-        System.out.println("=== 5. EXIT ===");
-        option = scanner.nextInt();
-        switch (option) {
-            case 1 -> addAirport(admin);
-            case 2 -> deleteAirport(admin);
-            case 3 -> addFlight(admin);
-            case 4 -> deleteFlight(admin);
-            case 5 -> System.exit(0);
-        }
-    }
-
-    public static void addAirport(Admin admin) throws SQLException {
-        System.out.println("=== ADD AIRPORT ===");
-        //Запрашиваем данные для создания нового класса
-        System.out.println("=== ENTER TITLE ===");
-        String title = scanner.next();
-
-        System.out.println("=== ENTER LOCATION ===");
-        String location = scanner.next();
-
-        //Создаем класс и добавляем его в массив
-        Airport newAirport = new Airport(title, location);
-        ResultSet result = admin.insert.execute(newAirport, "airports");
-        int id = ReachIdFromResultSet(result);
-        newAirport.setIdAirport(id);
-
-        adminInterfase(admin);
-    }
-
-    public static void deleteAirport(Admin admin) throws SQLException {
-        System.out.println("=== DELETE AIRPORT ===");
-        System.out.println("=== CHOOSE ID ===");
-        ResultSet result = null;
-        result = admin.read.execute(null, "airports");
-        while (result.next()) {
-            System.out.print(result.getString("id") + "| ");
-            System.out.print(result.getString("title") + "| ");
-            System.out.println(result.getString("location") + "| ");
-        }
-        admin.delete.execute(null, "airports");
-
-        adminInterfase(admin);
-
-    }
 
     public static void addFlight(Admin admin) throws SQLException {
         System.out.println("=== CHOSE ID AIRPORT ===");
