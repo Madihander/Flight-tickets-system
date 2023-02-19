@@ -68,7 +68,7 @@ public class Main {
         System.out.println("=== Enter weight of luggage ===");
         double luggage = scanner.nextDouble();
         // Создаем нового пользователя
-        CommonClasses.Customer newCustomer = new CommonClasses.Customer(name, email, phoneNumber,balance,luggage);
+        CommonClasses.Customer newCustomer = new CommonClasses.Customer(name, email, phoneNumber, balance, luggage);
         // Добавляем его в базу
 
         ResultSet result = admin.insert.execute(newCustomer, "customers");
@@ -82,7 +82,7 @@ public class Main {
         System.out.println("=== Your password: " + newCustomer.getPassword() + " ===");
         System.out.println(newCustomer.getId());
         System.out.println("=== NEW CUSTOMER CREATED ===");
-        //userInterfase(newCustomer);
+        customerInterfase(newCustomer,admin);
     }
 
     public static void signIn(Admin admin) throws SQLException {
@@ -140,10 +140,8 @@ public class Main {
     public static void adminInterfase(Admin admin) throws SQLException {
         int option = 0;
         System.out.println("=== ADMIN PANEL ===");
-        System.out.println("=== 1. ADD AIRPORT ===");
-        System.out.println("=== 2. DELETE AIRPORT ===");
-        System.out.println("=== 3. ADD FLIGHT ===");
-        System.out.println("=== 4. DELETE FLIGHT ===");
+        System.out.println("=== 1. ADD FLIGHT ===");
+        System.out.println("=== 2. DELETE FLIGHT ===");
         System.out.println("=== 5. EXIT ===");
         option = scanner.nextInt();
         switch (option) {
