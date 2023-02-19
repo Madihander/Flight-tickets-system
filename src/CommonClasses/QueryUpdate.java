@@ -8,7 +8,7 @@ public class QueryUpdate {
     public QueryUpdate(String query,String column, String updateData) {
         this.query = query;
         this.column = column;
-        this.updateData = updateData
+        this.updateData = updateData;
     }
 
     public String getQuery() {
