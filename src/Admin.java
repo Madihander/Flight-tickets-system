@@ -12,14 +12,16 @@ public class Admin implements СommonClass {
     Command insert;
     Command read;
     Command find;
+    Command update;
     Command delete;
 
-    public Admin(String name, Command insert, Command read, Command find, Command delete) {
+    public Admin(String name, Command insert, Command read, Command find,Command update, Command delete) {
         this.name = name;
         this.password = "12345";
         this.insert = insert;
         this.read = read;
         this.find = find;
+        this.update = update;
         this.delete = delete;
     }
 
@@ -37,46 +39,4 @@ public class Admin implements СommonClass {
         return null;
     }
 
-    /*
-    public void readData(String tableName) {
-        read.execute(tableName);
-    }
-    public void findRecord(String tableName) {
-        find.execute(tableName);
-    }
-    public void deleteRecord(String tableName) {
-        delete.execute(tableName);
-    }*/
-
-    /*
-    public void addNewCustomer(Customer customer, Connection conn) {
-        Customers.insertIntoTable(conn, customer);
-    }
-
-    public void addNewAirport(Airport airport, Connection conn) {
-        Airports.insertIntoTable(conn, airport);
-    }
-
-    public void addNewFlight(Flight flight, Connection conn, String location) {
-        Flights.insertIntoTable(conn, flight, location);
-    }
-
-    public ResultSet findCustomer(String name, String password, Connection conn) {
-        return Customers.findCustomer(conn, name, password);
-    }
-
-    public void readAirports(Connection conn) {
-        Airports.readData(conn);
-    }
-
-    public void readFlight(Connection conn) {
-        Flights.readData(conn);
-    }
-    public  void deleteAirport(Connection conn) {
-        Airports.deleteById(conn);
-    }
-    public void deleteFlight(Connection conn) {
-        Flights.deleteById(conn);
-    }
-     */
 }

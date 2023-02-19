@@ -52,7 +52,7 @@ public class DataBase {
 
             case "update":
                 switch (tableName) {
-                    case "customers", "flights" -> result = Update.updateById(conn, tableName);
+                    case "customers", "flights" -> result = Update.updateById(conn, someClass, tableName);
                 }
                 break;
 
