@@ -1,10 +1,7 @@
 package Tables;
 
-import Tables.Operations.Delete;
-import Tables.Operations.Find;
-import Tables.Operations.Insert;
+import Tables.Operations.*;
 import CommonClasses.СommonClass;
-import Tables.Operations.Read;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -23,6 +20,10 @@ public class DataBase {
         return chooseTable("find", someClass, tableName, conn);
     }
 
+    public ResultSet updateDate(Connection conn, СommonClass someClass, String tableName) {
+        return chooseTable("update", someClass, tableName, conn);
+    }
+
     public ResultSet deleteById(Connection conn, СommonClass someClass, String tableName) {
         return chooseTable("delete", someClass, tableName, conn);
     }
@@ -32,35 +33,34 @@ public class DataBase {
         switch (operation) {
             case "insert":
                 switch (tableName) {
-                    case "airports" -> result = Insert.insertIntoAirports(conn, someClass);
                     case "customers" -> result = Insert.InsertIntoCustomers(conn, someClass);
-                    case "tickets" -> result = Insert.InsertIntoTickets(conn, someClass);
-                    case "passengers" -> result = Insert.insertIntoPassengers(conn, someClass);
                     case "flights" -> result = Insert.insertIntoFligths(conn, someClass);
                 }
                 break;
 
             case "read":
                 switch (tableName) {
-                    case "airports", "customers", "tickets", "passengers", "flights" ->
-                            result = Read.readData(conn, tableName);
+                    case "customers", "flights" -> result = Read.readData(conn, tableName);
                 }
                 break;
 
             case "find":
                 switch (tableName) {
-                    case "airports", "customers", "tickets", "passengers", "flights" ->
-                            result = Find.findData(conn, someClass, tableName);
+                    case "customers", "flights" -> result = Find.findData(conn, someClass, tableName);
                 }
                 break;
 
-            case "delete":
+            case "update":
                 switch (tableName) {
-                    case "airports", "customers", "tickets", "passengers", "flights" ->
-                            result = Delete.deleteById(conn, tableName);
+                    case "customers", "flights" -> result = Update.updateById(conn, tableName);
                 }
                 break;
 
+                case "delete":
+                switch (tableName) {
+                    case "customers", "flights" -> result = Delete.deleteById(conn, tableName);
+                }
+                break;
         }
         return result;
     }
