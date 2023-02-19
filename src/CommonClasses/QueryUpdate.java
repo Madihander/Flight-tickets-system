@@ -1,6 +1,8 @@
 package CommonClasses;
 
-public class QueryUpdate {
+import java.util.ArrayList;
+
+public class QueryUpdate implements СommonClass {
     private final String query;
     private final String column;
     private final String updateData;
@@ -11,14 +13,12 @@ public class QueryUpdate {
         this.updateData = updateData;
     }
 
-    public String getQuery() {
-        return query;
-    }
-
-    public String getColumn() {
-        return column;
-    }
-    public String getUpdateData() {
-        return updateData;
+    @Override
+    public ArrayList<String> printInfo() {
+        ArrayList<String> data = new ArrayList<String>();
+        data.add(query);
+        data.add(column);
+        data.add(updateData);
+        return data;
     }
 }
