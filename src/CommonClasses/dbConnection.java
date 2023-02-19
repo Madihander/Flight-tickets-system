@@ -7,7 +7,7 @@ public class dbConnection {
     private Connection connection;
     private static final String DB_USERNAME = "postgres";
     private static final String DB_PASSWORD = "12345";
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/Flight_Tickets_System";
+    private static final String DB_URL = "jdbc:postgresql://localhost:5432/Flight_Ticket_System2";
 
     // Используем паттерн синглтон
     // Создаем класс, у которого отстувует конструктор
