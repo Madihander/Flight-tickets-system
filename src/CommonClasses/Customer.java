@@ -85,7 +85,7 @@ public class Customer implements СommonClass {
 
     @Override
     public ArrayList<String> printInfo() {
-        ArrayList<String> data = new ArrayList<String>();
+        ArrayList<String> data = new ArrayList<>();
         data.add(this.name);
         data.add(this.email);
         data.add(this.password);

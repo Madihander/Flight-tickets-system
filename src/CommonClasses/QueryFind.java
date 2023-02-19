@@ -17,7 +17,7 @@ public class QueryFind implements СommonClass {
 
     @Override
     public ArrayList<String> printInfo() {
-        ArrayList<String> data = new ArrayList<String>();
+        ArrayList<String> data = new ArrayList<>();
         data.add(query);
         data.add(var1);
         data.add(var2);

@@ -57,7 +57,7 @@ public class Flight implements СommonClass {
 
     @Override
     public ArrayList<String> printInfo() {
-        ArrayList<String> data = new ArrayList<String>();
+        ArrayList<String> data = new ArrayList<>();
         data.add(this.departureDate);
         data.add(this.departure);
         data.add(this.arrival);

@@ -1,9 +1,6 @@
 import CommonClasses.*;
 import CommonClasses.СommonClass;
 import Tables.DataBase;
-import org.checkerframework.checker.units.qual.A;
-
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -14,12 +11,10 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws SQLException {
-        Connection conn;
         DataBase DB = new DataBase();
-        ResultSet result;
         Admin admin = new Admin("John", new InsertCommand(DB), new ReadCommand(DB), new FindCommand(DB), new UpdateCommand(DB), new DeleteCommand(DB));
         System.out.println("=== admin password: " + admin.getPassword() + " === \n");
-        int option = 0;
+        int option;
         System.out.println("=== FLIGHT TICKET SYSTEM ===");
         System.out.println("=== CHOOSE OPTION ===");
         System.out.println("=== 1. SIGN UP === \n" + "=== 2. SIGN IN ===\n" + "=== 3. EXIT ===");
@@ -88,7 +83,7 @@ public class Main {
     public static void signIn(Admin admin) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("=== SIGN IN ===");
-        CommonClasses.Customer customer = null;
+        CommonClasses.Customer customer;
 
         System.out.println("=== Enter your name ===");
         String name = scanner.next();
@@ -126,7 +121,7 @@ public class Main {
     }
 
     public static void customerInterfase(CommonClasses.Customer customer, Admin admin) throws SQLException {
-        int option = 0;
+        int option;
         System.out.println("=== CUSTOMER PANEL ===");
         System.out.println("=== 1. BUY TICKETS ===");
         System.out.println("=== 2. EXIT ===");
@@ -138,7 +133,7 @@ public class Main {
     }
 
     public static void adminInterfase(Admin admin) throws SQLException {
-        int option = 0;
+        int option;
         System.out.println("=== ADMIN PANEL ===");
         System.out.println("=== 1. ADD FLIGHT ===");
         System.out.println("=== 2. DELETE FLIGHT ===");
@@ -185,7 +180,7 @@ public class Main {
     public static void deleteFlight(Admin admin) throws SQLException {
         System.out.println("=== DELETE FLIGHT ===");
         System.out.println("=== CHOOSE ID ===");
-        ResultSet result = null;
+        ResultSet result;
         result = admin.read.execute(null, "flights");
         while (result.next()) {
             System.out.print(result.getString("id") + "| ");
@@ -204,7 +199,7 @@ public class Main {
 
         System.out.println("=== BUY TICKET ===");
         System.out.println("=== CHOOSE FLIGHT ===");
-        ResultSet result = null;
+        ResultSet result;
         result = admin.read.execute(null, "flights");
         while (result.next()) {
             System.out.print(result.getString("id") + "| ");
@@ -225,13 +220,5 @@ public class Main {
         customerInterfase(customer,admin);
     }
 
-
-    public static int ReachIdFromResultSet(ResultSet result) throws SQLException {
-        int id = 0;
-        while (result.next()) {
-            id = result.getInt("id");
-        }
-        return id;
-    }
 
 }

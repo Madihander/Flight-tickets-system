@@ -1,8 +1,4 @@
-import CommonClasses.Customer;
 import CommonClasses.СommonClass;
-import org.checkerframework.checker.units.qual.C;
-//
-
 import java.sql.ResultSet;
 import java.util.ArrayList;
 

@@ -17,7 +17,7 @@ public class QueryUpdate implements СommonClass {
 
     @Override
     public ArrayList<String> printInfo() {
-        ArrayList<String> data = new ArrayList<String>();
+        ArrayList<String> data = new ArrayList<>();
         data.add(String.valueOf(id));
         data.add(query);
         data.add(column);
