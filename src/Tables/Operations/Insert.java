@@ -9,39 +9,6 @@ import java.util.Scanner;
 
 public class Insert {
     static Scanner scanner = new Scanner(System.in);
-
-    public static ResultSet insertIntoAirports(Connection conn, СommonClass airport) {
-        ResultSet result;
-        String tableName = "airports";
-
-        String title = airport.printInfo().get(0);
-
-        String location = airport.printInfo().get(1);
-
-        Statement stmt;
-        try {
-            String query =
-                    String.format("INSERT INTO %s(title,location) VALUES ('%s','%s');", tableName, title, location);
-            stmt = conn.createStatement();
-            stmt.executeUpdate(query);
-        } catch (Exception e) {
-            System.out.println(e);
-            return null;
-        }
-
-        try {
-            String query = String.format("SELECT id FROM %s WHERE title = '%s' AND location = '%s' ",
-                    tableName, title, location
-            );
-            stmt = conn.createStatement();
-            result = stmt.executeQuery(query);
-        } catch (Exception e) {
-            System.out.println(e);
-            return null;
-        }
-        return result;
-    }
-
     public static ResultSet InsertIntoCustomers(Connection conn, СommonClass customer) {
         ResultSet result;
         String tableName = "customers";
@@ -56,12 +23,13 @@ public class Insert {
 
         double balance = Double.parseDouble(customer.printInfo().get(4));
 
+        double luggage = Double.parseDouble(customer.printInfo().get(5));
         Statement stmt;
         try {
             String query =
-                    String.format("INSERT INTO %s(name,password,email,phonenumber,balance)" +
-                                    " VALUES ('%s','%s','%s','%s','%s');",
-                            tableName, name, password, email, phoneNumber, balance);
+                    String.format("INSERT INTO %s(name,password,email,phonenumber,balance, luggage)" +
+                                    " VALUES ('%s','%s','%s','%s','%s','%s');",
+                            tableName, name, password, email, phoneNumber, balance,luggage);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
         } catch (Exception e) {
@@ -82,87 +50,12 @@ public class Insert {
 
         return result;
     }
-
-    public static ResultSet InsertIntoTickets(Connection conn, СommonClass ticket) {
-        ResultSet result;
-        String tableName = "tickets";
-
-        String owner = ticket.printInfo().get(0);
-
-        int place = Integer.parseInt(ticket.printInfo().get(1));
-
-        int numberFlight = Integer.parseInt(ticket.printInfo().get(2));
-
-        int price = Integer.parseInt(ticket.printInfo().get(3));
-
-
-        Statement stmt;
-        try {
-            String query =
-                    String.format("INSERT INTO %s(owner,place,numberflight,price)" +
-                                    " VALUES ('%s','%s','%s','%s');",
-                            tableName, owner, place, numberFlight, price);
-            stmt = conn.createStatement();
-            stmt.executeUpdate(query);
-        } catch (Exception e) {
-            System.out.println(e);
-            return null;
-        }
-
-        try {
-            String query = String.format("SELECT id FROM %s WHERE owner = '%s' AND numberflight = '%s' ",
-                    tableName, owner, numberFlight
-            );
-            stmt = conn.createStatement();
-            result = stmt.executeQuery(query);
-        } catch (Exception e) {
-            System.out.println(e);
-            return null;
-        }
-
-        return result;
-    }
-
-    public static ResultSet insertIntoPassengers(Connection conn, СommonClass passenger) {
-        ResultSet result;
-        String tableName = "passengers";
-
-        int numberTicket = Integer.parseInt(passenger.printInfo().get(0));
-
-        double luggage = Double.parseDouble(passenger.printInfo().get(1));
-
-        double extraLuggage = Double.parseDouble(passenger.printInfo().get(2));
-
-        Statement stmt;
-        try {
-            String query =
-                    String.format("INSERT INTO %s(numberticket,luggage,extraLuggage) VALUES ('%s','%s','%s');", tableName, numberTicket, luggage, extraLuggage);
-            stmt = conn.createStatement();
-            stmt.executeUpdate(query);
-        } catch (Exception e) {
-            System.out.println(e);
-            return null;
-        }
-        try {
-            String query = String.format("SELECT id FROM %s WHERE numberticket = '%s' AND luggage = '%s' ",
-                    tableName, numberTicket, luggage
-            );
-            stmt = conn.createStatement();
-            result = stmt.executeQuery(query);
-        } catch (Exception e) {
-            System.out.println(e);
-            return null;
-        }
-
-        return result;
-    }
-
     public static ResultSet insertIntoFligths(Connection conn, СommonClass flight) {
         ResultSet result;
         String tableName = "flights";
 
-        String locationAirport = flight.printInfo().get(0);
-        String departureDate = flight.printInfo().get(1);
+        String departureDate = flight.printInfo().get(0);
+        String departure = flight.printInfo().get(1);
         String arrival = flight.printInfo().get(2);
         String startTime = flight.printInfo().get(3);
         String endTime = flight.printInfo().get(4);
@@ -172,9 +65,9 @@ public class Insert {
         Statement stmt;
         try {
             String query =
-                    String.format("INSERT INTO %s(locationAirport,departureDate,arrival,startTime,endTime,cost,places)" +
+                    String.format("INSERT INTO %s(departuredate,departure,arrival,startTime,endTime,cost,places)" +
                                     " VALUES ('%s','%s','%s','%s','%s','%s','%s');",
-                            tableName, locationAirport, departureDate, arrival, startTime, endTime, cost, places);
+                            tableName, departureDate, departure, arrival, startTime, endTime, cost, places);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
         } catch (Exception e) {
@@ -182,8 +75,8 @@ public class Insert {
             return null;
         }
         try {
-            String query = String.format("SELECT id FROM %s WHERE locationAirport = '%s' AND arrival = '%s' AND startTime = '%s' AND endTime = '%s' ",
-                    tableName, locationAirport, arrival, startTime, endTime
+            String query = String.format("SELECT id FROM %s WHERE departuredate = '%s' AND arrival = '%s' AND startTime = '%s' AND endTime = '%s' ",
+                    tableName, departureDate, arrival, startTime, endTime
             );
             stmt = conn.createStatement();
             result = stmt.executeQuery(query);
