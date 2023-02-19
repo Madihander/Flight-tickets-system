@@ -17,48 +17,8 @@ public class Main {
         Connection conn;
         DataBase DB = new DataBase();
         ResultSet result;
-        Admin admin = new Admin("John", new InsertCommand(DB), new ReadCommand(DB), new FindCommand(DB), new DeleteCommand(DB));
-
+        Admin admin = new Admin("John", new InsertCommand(DB), new ReadCommand(DB), new FindCommand(DB), new UpdateCommand(DB), new DeleteCommand(DB));
         System.out.println("=== admin password: " + admin.getPassword() + " === \n");
-
-
-        //Airport airport = new Airport("Asan", "Asan");
-        //int id = 0;
-        //result = admin.insertRecord(airport, "airports");
-        //while (result.next()) {
-        //    id = result.getInt("id");
-        //}
-        //System.out.println(id);
-
-        /*admin.delete.execute(null,"airports");
-        result = admin.read.execute(null,"airports");
-        while (result.next()) {
-            System.out.print(result.getString("id") + "| ");
-            System.out.print(result.getString("title") + "| ");
-            System.out.println(result.getString("location") + "| ");
-        }*/
-
-        //Flight flight = new Flight(airport.getIdAirport(), "2023-02-10", "Karaganda",
-        //        "01:20:00", "03:40:00", 1000, 50);
-        //String FlightID = admin.insertRecord(flight, "flights");
-        //flight.setId(Integer.parseInt(FlightID));
-        //System.out.println(FlightID);
-
-
-        //Customer customer = new Customer("Alik","ALik@mail.ru","+ALik");
-
-        //String id = admin.insertRecord(customer,"customers");
-        //customer.setId(Integer.parseInt(id));
-
-        //Ticket ticket = new Ticket(customer.getId(),601,1,1000);
-        //String idTIC = admin.insertRecord(ticket,"tickets");
-        //ticket.setIdTicket(Integer.parseInt(idTIC));
-
-        //Passenger passenger =new Passenger(0.5,0.5,ticket.getIdTicket());
-        //String idPAs = admin.insertRecord(passenger,"passengers");
-        //System.out.println(idPAs);
-
-
         int option = 0;
         System.out.println("=== FLIGHT TICKET SYSTEM ===");
         System.out.println("=== CHOOSE OPTION ===");
