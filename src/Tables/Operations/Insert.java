@@ -60,14 +60,12 @@ public class Insert {
         String startTime = flight.printInfo().get(3);
         String endTime = flight.printInfo().get(4);
         int cost = Integer.parseInt(flight.printInfo().get(5));
-        int places = Integer.parseInt(flight.printInfo().get(6));
-
         Statement stmt;
         try {
             String query =
-                    String.format("INSERT INTO %s(departuredate,departure,arrival,startTime,endTime,cost,places)" +
-                                    " VALUES ('%s','%s','%s','%s','%s','%s','%s');",
-                            tableName, departureDate, departure, arrival, startTime, endTime, cost, places);
+                    String.format("INSERT INTO %s(departuredate,departure,arrival,startTime,endTime,cost)" +
+                                    " VALUES ('%s','%s','%s','%s','%s','%s');",
+                            tableName, departureDate, departure, arrival, startTime, endTime, cost);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
         } catch (Exception e) {
