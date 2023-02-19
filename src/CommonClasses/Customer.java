@@ -11,7 +11,7 @@ public class Customer implements СommonClass {
     private final String phoneNumber;
     private double balance;
 
-    private double luggage;
+    private final double luggage;
 
     private int ticket;
 
@@ -21,6 +21,7 @@ public class Customer implements СommonClass {
         this.phoneNumber = phoneNumber;
         this.password = generatePassword();
         this.balance = balance;
+        this.luggage = luggage;
     }
 
     public int getId() {
