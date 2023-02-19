@@ -176,7 +176,7 @@ public class Main {
 
         //Создаем класс и добавляем его в массив
         CommonClasses.Flight newFlight = new CommonClasses.Flight(
-                departureDate, departure , arrival, startTime, endTime, cost);
+                departureDate, departure, arrival, startTime, endTime, cost);
         admin.insert.execute(newFlight, "flights");
 
         adminInterfase(admin);
@@ -208,33 +208,21 @@ public class Main {
         result = admin.read.execute(null, "flights");
         while (result.next()) {
             System.out.print(result.getString("id") + "| ");
+            System.out.print(result.getString("departure") + "| ");
             System.out.print(result.getString("arrival") + "| ");
-            System.out.println(result.getString("starttime") + "| ");
-            System.out.println(result.getString("endtime") + "| ");
-            System.out.println(result.getString("places") + "| ");
+            System.out.print(result.getString("starttime") + "| ");
+            System.out.print(result.getString("endtime") + "| ");
+            System.out.println(result.getString("cost") + "| ");
         }
         System.out.println("=== ENTER number flight ===");
         int numberFlight = scanner.nextInt();
-        System.out.println("=== ENTER PLACE ===");
-        int place = scanner.nextInt();
-        System.out.println("=== ENTER PRICE ===");
-        int price = scanner.nextInt();
 
-        Ticket newTicket = new Ticket(customer.getId(), place, numberFlight, price);
-        result = admin.insert.execute(newTicket, "tickets");
-        int ticketId = 0;
-        while (result.next()) {
-            ticketId = result.getInt("id");
-        }
-        newTicket.setIdTicket(ticketId);
-        System.out.println("\n=== ENTER LUGGAGE ===");
-        double luggage = scanner.nextDouble();
-        System.out.println("=== ENTER EXTRA LUGGAGE ===");
-        double extraLuggage = scanner.nextDouble();
+        String query = "UPDATE %s SET %s = %s WHERE id = %s";
+        customer.setTicket(numberFlight);
+        QueryUpdate queryUpdate = new QueryUpdate(customer.getId(), query, "ticket", numberFlight);
+        admin.update.execute(queryUpdate, "customers");
 
-        Passenger newPassenger = new Passenger(luggage,extraLuggage,ticketId);
-        admin.insert.execute(newPassenger,"passengers");
-        adminInterfase(admin);
+        customerInterfase(customer,admin);
     }
 
 
