@@ -104,11 +104,15 @@ public class Main {
                 i = 0;
             }
         }
+
+        System.out.println("=== Enter weight of luggage ===");
+        double luggage = scanner.nextDouble();
         // Создаем нового пользователя
-        CommonClasses.Customer newCustomer = new CommonClasses.Customer(name, email, phoneNumber);
-        newCustomer.setBalance(balance);
+        CommonClasses.Customer newCustomer = new CommonClasses.Customer(name, email, phoneNumber,balance,luggage);
         // Добавляем его в базу
+
         ResultSet result = admin.insert.execute(newCustomer, "customers");
+
         int id = 0;
         while (result.next()) {
             id = result.getInt("id");
@@ -150,9 +154,12 @@ public class Main {
                 customer = new CommonClasses.Customer(
                         result.getString("name"),
                         result.getString("email"),
-                        result.getString("phonenumber"));
+                        result.getString("phonenumber"),
+                        result.getDouble("balance"),
+                        result.getDouble("luggage"));
                 customer.setPassword(result.getString("password"));
                 customer.setId(result.getInt("id"));
+                customer.setTicket(result.getInt("ticket"));
                 customerInterfase(customer, admin);
             }
         }
