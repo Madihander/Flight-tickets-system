@@ -6,9 +6,9 @@ public class QueryUpdate implements СommonClass {
     private final int id;
     private final String query;
     private final String column;
-    private final String updateData;
+    private final int updateData;
 
-    public QueryUpdate(int id, String query,String column, String updateData) {
+    public QueryUpdate(int id, String query,String column, int updateData) {
         this.id = id;
         this.query = query;
         this.column = column;
@@ -21,7 +21,7 @@ public class QueryUpdate implements СommonClass {
         data.add(String.valueOf(id));
         data.add(query);
         data.add(column);
-        data.add(updateData);
+        data.add(String.valueOf(updateData));
         return data;
     }
 }
